@@ -25,7 +25,7 @@ create table anh (
 	id varchar(10) primary key,
     url varchar(200) not null,
     ghi_chu varchar(255),
-    ngay_chup date
+    ngay_chup datetime
 );
 
 create table phu_phi (
@@ -91,8 +91,8 @@ create table oto (
 
 create table hop_dong_cho_thue (
 	id varchar(10) primary key,
-    ngay_bat_dau date not null,
-    ngay_ket_thuc date not null,
+    ngay_bat_dau datetime not null,
+    ngay_ket_thuc datetime not null,
     loai_hop_dong varchar(20) not null,
     ghi_chu varchar(200),
     oto_id varchar(10) not null,
@@ -106,7 +106,7 @@ create table hop_dong_cho_thue (
 create table hoa_don_doi_tac (
 	id varchar(10) primary key,
     tong_tien float(15) not null,
-    ngay_thanh_toan date not null,
+    ngay_thanh_toan datetime not null,
     phuong_thuc_thanh_toan varchar(20) not null,
     ghi_chu varchar(200),
     nhan_vien_id varchar(10) not null,
@@ -133,12 +133,12 @@ create table anh_cua_xe (
 
 create table hop_dong_thue (
 	id varchar(10) primary key,
-    thoi_gian_nhan date not null,
-    thoi_gian_tra date not null,
+    thoi_gian_nhan datetime not null,
+    thoi_gian_tra datetime not null,
     trang_thai integer(1) not null,
     mo_ta varchar(200),
-    check_in date,
-    check_out date,
+    check_in datetime,
+    check_out datetime,
     khach_hang_danh_gia_chu varchar(255),
     khach_hang_danh_gia_so integer(1),
     doi_tac_bao_cao varchar(255),
@@ -157,7 +157,7 @@ create table anh_cua_khach (
 
 create table danh_sach_den (
 	id varchar(10) primary key,
-    ngay_them date not null,
+    ngay_them datetime not null,
     ly_do varchar(255),
 	trang_thai integer(1) not null,
     khach_hang_id varchar(10) not null,
@@ -171,7 +171,7 @@ create table danh_sach_den (
 create table hoa_don (
 	id varchar(10) primary key,
     tong_tien float(15) not null,
-    ngay_thanh_toan date not null,
+    ngay_thanh_toan datetime not null,
     phuong_thuc_thanh_toan varchar(20) not null,
     ghi_chu varchar(200),
     hop_dong_thue_id varchar(10) not null,
@@ -196,8 +196,8 @@ create table tai_san_cam_co (
     gia float(15) not null,
     mo_ta varchar(200),
     trang_thai integer(1) not null,
-    thoi_gian_tra date,
-    thoi_gian_nhan date,
+    thoi_gian_tra datetime,
+    thoi_gian_nhan datetime,
     hop_dong_thue_id varchar(10) not null,
     khach_hang_id varchar(10) not null,
     nhan_vien_nhan_id varchar(10) not null,
