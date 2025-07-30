@@ -1,4 +1,4 @@
-package com.example.car.entity;
+package com.example.car.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -35,18 +35,18 @@ public class TaiSanCamCo {
     private Date thoiGianNhan;
 
     @ManyToOne
-    @JoinColumn(name = "HopDongThueId", nullable = false)
+    @JoinColumn(name = "hop_dong_thue_id", nullable = false)
     private HopDongThue hopDongThue;
 
     @ManyToOne
-    @JoinColumn(name = "KhachHangId", nullable = false)
+    @JoinColumn(name = "khach_hang_id", nullable = false)
     private KhachHang khachHang;
 
     @ManyToOne
-    @JoinColumn(name = "NhanVienNhanId", nullable = false)
+    @JoinColumn(name = "nhan_vien_nhan_id", nullable = false)
     private NhanVien nhanVienNhan;
 
     @ManyToOne
-    @JoinColumn(name = "NhanvienTraId", nullable = false)
+    @JoinColumn(name = "nhan_vien_tra_id", nullable = false)
     private NhanVien nhanVienTra;
 }

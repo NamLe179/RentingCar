@@ -1,4 +1,4 @@
-package com.example.car.entity;
+package com.example.car.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,9 +7,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "hang_xe")
+@Table(name = "tien_nghi")
 @Data
-public class HangXe {
+public class TienNghi {
     @Id
     @Column(length = 10)
     private String id;

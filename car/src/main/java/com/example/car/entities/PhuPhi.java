@@ -1,12 +1,15 @@
-package com.example.car.entity;
+package com.example.car.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "mau_xe")
+@Table(name = "phu_phi")
 @Data
-public class MauXe {
+public class PhuPhi {
     @Id
     @Column(length = 10)
     private String id;
@@ -15,12 +18,8 @@ public class MauXe {
     private String ten;
 
     @Column(nullable = false)
-    private int soGhe;
+    private float gia;
 
     @Column(length = 200, nullable = true)
     private String moTa;
-
-    @ManyToOne
-    @JoinColumn(name = "HangXeId", nullable = false)
-    private HangXe hangXe;
 }
