@@ -1,4 +1,4 @@
-package com.example.car.entity;
+package com.example.car.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,10 +25,10 @@ public class HopDongThue {
     @Column(length = 200, nullable = true)
     private String moTa;
 
-    @Column(nullable = true)
+    @Column(name = "check_in", nullable = true)
     private Date checkin;
 
-    @Column(nullable = true)
+    @Column(name = "check_out", nullable = true)
     private Date checkout;
 
     @Column(length = 255, nullable = true)

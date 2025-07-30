@@ -1,10 +1,11 @@
-package com.example.car.entity;
+package com.example.car.entities;
 
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "thanh_vien")
 @Data
 public class ThanhVien {
@@ -28,6 +29,6 @@ public class ThanhVien {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "DiaChiId", nullable = false)
+    @JoinColumn(name = "dia_chi_id", referencedColumnName = "id", nullable = false)
     private DiaChi diaChi;
 }

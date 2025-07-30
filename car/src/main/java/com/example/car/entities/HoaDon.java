@@ -1,4 +1,4 @@
-package com.example.car.entity;
+package com.example.car.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -32,4 +32,7 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "NhanVienId", nullable = false)
     private NhanVien nhanVien;
+
+
+
 }
