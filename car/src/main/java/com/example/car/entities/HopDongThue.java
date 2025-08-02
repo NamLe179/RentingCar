@@ -40,6 +40,8 @@ public class HopDongThue {
     @Column(length = 255, nullable = true)
     private String doiTacBaoCao;
 
+    private Date ngayDanhGia;
+
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)
     private Oto oto;

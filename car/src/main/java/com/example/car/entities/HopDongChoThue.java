@@ -30,10 +30,6 @@ public class HopDongChoThue {
     private Oto oto;
 
     @ManyToOne
-    @JoinColumn(name = "DoiTacId", nullable = false)
-    private DoiTac doiTac;
-
-    @ManyToOne
     @JoinColumn(name = "NhanVienId", nullable = false)
     private NhanVien nhanVien;
 }

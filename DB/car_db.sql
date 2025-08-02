@@ -83,10 +83,13 @@ create table oto (
     bien_so varchar(10) not null,
     trang_thai integer(1) not null,
     gia float(15) not null,
+    mo_ta varchar(500),
     mau_xe_id varchar(10) not null,
     dia_chi_id varchar(10) not null,
+    doi_tac_id varchar(10) not null,
     foreign key (mau_xe_id) references mau_xe(id),
-    foreign key (dia_chi_id) references dia_chi(id)
+    foreign key (dia_chi_id) references dia_chi(id),
+    foreign key (doi_tac_id) references doi_tac(id)
 );
 
 create table hop_dong_cho_thue (
@@ -96,10 +99,10 @@ create table hop_dong_cho_thue (
     loai_hop_dong varchar(20) not null,
     ghi_chu varchar(200),
     oto_id varchar(10) not null,
-    doi_tac_id varchar(10) not null,
+    
     nhan_vien_id varchar(10) not null,
     foreign key (oto_id) references oto(id),
-    foreign key (doi_tac_id) references doi_tac(id),
+    
     foreign key (nhan_vien_id) references nhan_vien(id)
 );
 
@@ -127,6 +130,7 @@ create table anh_cua_xe (
 	id varchar(10) primary key,
     loai_anh varchar(50) not null,
     oto_id varchar(10) not null,
+    thumnail boolean not null,
     foreign key (id) references anh(id),
     foreign key (oto_id) references oto(id)
 );
@@ -141,6 +145,7 @@ create table hop_dong_thue (
     check_out datetime,
     khach_hang_danh_gia_chu varchar(255),
     khach_hang_danh_gia_so integer(1),
+    ngay_danh_gia datetime,
     doi_tac_bao_cao varchar(255),
     oto_id varchar(10) not null,
     khach_hang_id varchar(10) not null,

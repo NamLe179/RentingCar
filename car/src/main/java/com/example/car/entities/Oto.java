@@ -1,11 +1,14 @@
 package com.example.car.entities;
 
+import com.example.car.enums.OtoStatus;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "oto")
 @Data
+@Builder
 public class Oto {
     @Id
     @Column(length = 10)
@@ -26,11 +29,15 @@ public class Oto {
     @Column(length = 10, nullable = false)
     private String bienSo;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(length = 1, nullable = false)
-    private int trangThai;
+    private OtoStatus trangThai;
 
     @Column(nullable = false)
     private float gia;
+
+    @Column(length = 500)
+    private String moTa;
 
     @ManyToOne
     @JoinColumn(name = "MauXeId", nullable = false)
@@ -39,4 +46,8 @@ public class Oto {
     @OneToOne
     @JoinColumn(name = "DiaChiId", nullable = false)
     private DiaChi diaChi;
+
+    @ManyToOne
+    @JoinColumn(name = "doi_tac_id", nullable = false)
+    private DoiTac doiTac;
 }

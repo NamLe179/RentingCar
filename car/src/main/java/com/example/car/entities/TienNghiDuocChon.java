@@ -1,11 +1,13 @@
 package com.example.car.entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "tien_nghi_duoc_chon")
 @Data
+@Builder
 public class TienNghiDuocChon {
     @Id
     @Column(length = 10)
