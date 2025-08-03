@@ -1,9 +1,6 @@
 package com.example.car.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,8 +8,8 @@ import lombok.Data;
 @Data
 public class PhuPhi {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 20, nullable = false)
     private String ten;

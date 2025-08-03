@@ -10,8 +10,8 @@ import java.util.Date;
 @Data
 public class DanhSachDen {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(nullable = false)
     private Date ngayThem;

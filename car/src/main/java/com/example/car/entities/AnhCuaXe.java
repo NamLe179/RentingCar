@@ -10,6 +10,9 @@ public class AnhCuaXe extends Anh{
     @Column(length = 50, nullable = false)
     private String loaiAnh;
 
+    @Column(nullable = false)
+    private boolean thumnail;
+
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)
     private Oto oto;

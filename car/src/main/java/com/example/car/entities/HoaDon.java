@@ -10,8 +10,8 @@ import java.util.Date;
 @Data
 public class HoaDon {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 15, nullable = false)
     private float tongTien;

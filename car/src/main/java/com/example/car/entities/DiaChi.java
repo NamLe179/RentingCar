@@ -1,18 +1,17 @@
 package com.example.car.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Table(name = "dia_chi")
 @Data
+@Builder
 public class DiaChi {
     @Id
-    @Column(length = 10, nullable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 100, nullable = false)
     private String tinh;
