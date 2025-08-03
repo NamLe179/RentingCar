@@ -10,8 +10,8 @@ import java.util.Date;
 @Data
 public class HopDongThue {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(nullable = false)
     private Date thoiGianNhan;
@@ -43,8 +43,7 @@ public class HopDongThue {
     @Column(length = 255, nullable = true)
     private String doiTacBaoCao;
 
-    @Column(nullable = false)
-    private Date ngayDanhGia;
+
 
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)

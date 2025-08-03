@@ -11,8 +11,8 @@ import java.util.Date;
 @Data
 public class Anh {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 200, nullable = false)
     private String url;

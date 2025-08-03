@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class MauXe {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 20, nullable = false)
     private String ten;
