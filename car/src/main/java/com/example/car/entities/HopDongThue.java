@@ -25,6 +25,9 @@ public class HopDongThue {
     @Column(length = 200, nullable = true)
     private String moTa;
 
+    @Column(length = 15, nullable = false)
+    private float gia;
+
     @Column(name = "check_in", nullable = true)
     private Date checkin;
 
@@ -40,7 +43,7 @@ public class HopDongThue {
     @Column(length = 255, nullable = true)
     private String doiTacBaoCao;
 
-    private Date ngayDanhGia;
+
 
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)
