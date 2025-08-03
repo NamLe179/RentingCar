@@ -11,7 +11,7 @@ create table mau_xe (
     ten varchar(20) not null,
     so_ghe integer(2) not null,
     mo_ta varchar(200),
-    hang_xe_id varchar(10) not null,
+    hang_xe_id integer(10) not null,
     foreign key (hang_xe_id) references hang_xe(id)
 );
 

@@ -43,7 +43,8 @@ public class HopDongThue {
     @Column(length = 255, nullable = true)
     private String doiTacBaoCao;
 
-
+    @Column(nullable = true)
+    private Date ngayDanhGia;
 
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)
