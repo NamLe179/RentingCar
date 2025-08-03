@@ -5,14 +5,16 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "oto")
 @Data
 @Builder
 public class Oto {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(length = 4, nullable = false)
     private int namSanXuat;

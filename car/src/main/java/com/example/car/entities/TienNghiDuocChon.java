@@ -10,8 +10,8 @@ import lombok.Data;
 @Builder
 public class TienNghiDuocChon {
     @Id
-    @Column(length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)
