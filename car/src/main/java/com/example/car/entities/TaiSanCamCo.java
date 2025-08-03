@@ -1,5 +1,6 @@
 package com.example.car.entities;
 
+import com.example.car.enums.TaiSanCamCoStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,7 +27,7 @@ public class TaiSanCamCo {
     private String moTa;
 
     @Column(length = 1, nullable = false)
-    private int trangThai;
+    private TaiSanCamCoStatus trangThai;
 
     @Column(nullable = true)
     private Date thoiGianTra;
