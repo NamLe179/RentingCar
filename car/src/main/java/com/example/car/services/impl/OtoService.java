@@ -76,9 +76,10 @@ public class OtoService implements IOtoService {
 
     @Override
     public Oto getOtoById(Integer id) throws Exception {
-        return otoRepository.findById(id)
-                .orElseThrow(() -> new DataNotFoundException(
-                        "Khong tim thay o to co id " + id
-                ));
+//        return otoRepository.findById(id)
+//                .orElseThrow(() -> new DataNotFoundException(
+//                        "Khong tim thay o to co id " + id
+//                ));
+        return null;
     }
 }

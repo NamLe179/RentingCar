@@ -207,7 +207,7 @@ create table tai_san_cam_co (
     hop_dong_thue_id integer(10) not null,
     khach_hang_id varchar(10) not null,
     nhan_vien_nhan_id varchar(10) not null,
-    nhan_vien_tra_id varchar(10) not null,
+    nhan_vien_tra_id varchar(10),
     
     foreign key (hop_dong_thue_id) references hop_dong_thue(id),
     foreign key (khach_hang_id) references khach_hang(id),

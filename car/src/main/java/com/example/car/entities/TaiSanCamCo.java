@@ -52,6 +52,6 @@ public class TaiSanCamCo {
     private NhanVien nhanVienNhan;
 
     @ManyToOne
-    @JoinColumn(name = "nhan_vien_tra_id", nullable = false)
+    @JoinColumn(name = "nhan_vien_tra_id", nullable = true)
     private NhanVien nhanVienTra;
 }

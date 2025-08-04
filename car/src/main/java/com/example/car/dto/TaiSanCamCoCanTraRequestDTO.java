@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class TaiSanCamCoCanTraRequestDTO {
-    private TaiSanCamCo taiSanCamCo;
-    private NhanVien nhanVienTra;
+    private int taiSanCamCoId;
+    private String nhanVienTraId;
 }

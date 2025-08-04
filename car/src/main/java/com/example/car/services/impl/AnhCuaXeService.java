@@ -22,23 +22,24 @@ public class AnhCuaXeService implements IAnhCuaXeService {
 
     @Override
     public AnhCuaXe createAnhCuaXe(Integer otoId, AnhCuaXeDto anhCuaXeDto) throws Exception {
-        Oto existingOto = otoRepository.findById(otoId)
-                .orElseThrow(() ->
-                        new DataNotFoundException(
-                                "Cannot find oto with id: "+ otoId));
-        AnhCuaXe anhCuaXe = AnhCuaXe.builder()
-                .oto(existingOto)
-                .build();
-        anhCuaXe.setUrl(anhCuaXeDto.getUrl());
-        anhCuaXe.setNgayChup(new Date());
-        //Ko cho insert quá 5 ảnh cho 1 sản phẩm
-        int size = anhCuaXeRepository.findByOtoId(otoId).size();
-        if(size >= AnhCuaXe.MAXIMUM_IMAGES_PER_PRODUCT) {
-            throw new InvalidParamException(
-                    "Number of images must be <= "
-                            + AnhCuaXe.MAXIMUM_IMAGES_PER_PRODUCT);
-        }
-        return anhCuaXeRepository.save(anhCuaXe);
+//        Oto existingOto = otoRepository.findById(otoId)
+//                .orElseThrow(() ->
+//                        new DataNotFoundException(
+//                                "Cannot find oto with id: "+ otoId));
+//        AnhCuaXe anhCuaXe = AnhCuaXe.builder()
+//                .oto(existingOto)
+//                .build();
+//        anhCuaXe.setUrl(anhCuaXeDto.getUrl());
+//        anhCuaXe.setNgayChup(new Date());
+//        //Ko cho insert quá 5 ảnh cho 1 sản phẩm
+//        int size = anhCuaXeRepository.findByOtoId(otoId).size();
+//        if(size >= AnhCuaXe.MAXIMUM_IMAGES_PER_PRODUCT) {
+//            throw new InvalidParamException(
+//                    "Number of images must be <= "
+//                            + AnhCuaXe.MAXIMUM_IMAGES_PER_PRODUCT);
+//        }
+//        return anhCuaXeRepository.save(anhCuaXe);
+        return null;
     }
 
     @Override

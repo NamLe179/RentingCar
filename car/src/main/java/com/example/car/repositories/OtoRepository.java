@@ -13,20 +13,20 @@ import java.util.List;
 public interface OtoRepository extends JpaRepository<Oto, String> {
     // Các phương thức truy vấn tùy chỉnh có thể được định nghĩa ở đây
     // Ví dụ: tìm kiếm xe theo tiêu chí
-    @Query(value = "SELECT * FROM oto o " +
-            "JOIN hop_dong_thue hdt ON o.id = hdt.oto_id " +
-            "JOIN mau_xe mx ON o.mauxe_id = mx.id " +
-            "JOIN hang_xe hx ON hx.id = mx.hangxe_id " +
-            "JOIN dia_chi dc ON dc.id = o.diachi_id " +
+    @Query(value = "SELECT o.* FROM oto o " +
+            "LEFT JOIN hop_dong_thue hdt ON o.id = hdt.oto_id " +
+            "JOIN mau_xe mx ON o.mau_xe_id = mx.id " +
+            "JOIN hang_xe hx ON hx.id = mx.hang_xe_id " +
+            "JOIN dia_chi dc ON dc.id = o.dia_chi_id " +
             "WHERE " +
             "(:brand IS NULL OR hx.ten = :brand) AND " +
-            "(:ngayNhan >= DATE_ADD(hdt.thoi_gian_tra, INTERVAL 7 DAY) OR :ngayNhan >= hdt.checkout) AND " +
-            "(:ngayTra <= DATE_ADD(hdt.thoi_gian_nhan, INTERVAL 7 DAY)) AND " +
+            "(hdt.oto_id IS NULL OR :ngayNhan >= DATE_ADD(hdt.thoi_gian_tra, INTERVAL 7 DAY) OR :ngayNhan >= hdt.check_out OR hdt.thoi_gian_tra IS NULL) AND " +
+            "(hdt.oto_id IS NULL OR :ngayTra <= DATE_ADD(hdt.thoi_gian_nhan, INTERVAL 7 DAY) OR hdt.thoi_gian_nhan IS NULL) AND " +
             "(:tinh = dc.tinh) AND " +
             "(:fuelType IS NULL OR o.loai_nhien_lieu = :fuelType) AND " +
-            "(:transmissionType IS NULL OR o.muc_tieu_thu = :transmissionType) AND " +
-            "(:seats IS NULL OR o.so_ghe = :seats) AND " +
-            "o.trang_thai = 'OK'",
+            "(:transmissionType IS NULL OR o.truyen_dong = :transmissionType) AND " +
+            "(:seats IS NULL OR mx.so_ghe = :seats) AND " +
+            "o.trang_thai = 1",
             nativeQuery = true)
      List<Oto> findByCriteria(@Param("ngayNhan") Date ngayNhan,
                               @Param("ngayTra") Date ngayTra,

@@ -51,7 +51,7 @@ public class RentingCarController {
     @GetMapping("/cars/{otoId}/images")
     public ResponseEntity<List<String>> getAnhCuaXeTheoOto(@PathVariable String otoId) {
         try {
-            List<String> images = rentingCarService.getAnhCuaXeTheoOto(otoId);
+            List<String> images = rentingCarService.getAnhCuaXeTheoOto(Integer.parseInt(otoId));
             return ResponseEntity.ok(images);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -98,40 +98,40 @@ public class RentingCarController {
         }
     }
 
-    @PutMapping("/hop-dong-thue/checkin")
-    public ResponseEntity<HopDongThue> setCheckInTime(@RequestBody HopDongThue hopDongThue) {
+    @PutMapping("/hop-dong-thue/checkin/{hopDongId}")
+    public ResponseEntity<HopDongThue> setCheckInTime(@PathVariable int hopDongId) {
         try {
-            HopDongThue updatedHopDong = rentingCarService.setCheckInTime(hopDongThue);
+            HopDongThue updatedHopDong = rentingCarService.setCheckInTime(hopDongId);
             return ResponseEntity.ok(updatedHopDong);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @PutMapping("/hop-dong-thue/checkout")
-    public ResponseEntity<HopDongThue> setCheckOutTime(@RequestBody HopDongThue hopDongThue) {
+    @PutMapping("/hop-dong-thue/checkout/{hopDongId}")
+    public ResponseEntity<HopDongThue> setCheckOutTime(@PathVariable int hopDongId) {
         try {
-            HopDongThue updatedHopDong = rentingCarService.setCheckOutTime(hopDongThue);
+            HopDongThue updatedHopDong = rentingCarService.setCheckOutTime(hopDongId);
             return ResponseEntity.ok(updatedHopDong);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @PutMapping("/hop-dong-thue/cancel")
-    public ResponseEntity<HopDongThue> cancelHopDongThue(@RequestBody HopDongThue hopDongThue) {
+    @PutMapping("/hop-dong-thue/cancel/{hopDongId}")
+    public ResponseEntity<HopDongThue> cancelHopDongThue(@PathVariable int hopDongId) {
         try {
-            HopDongThue cancelledHopDong = rentingCarService.cancelHopDongThue(hopDongThue);
+            HopDongThue cancelledHopDong = rentingCarService.cancelHopDongThue(hopDongId);
             return ResponseEntity.ok(cancelledHopDong);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @PutMapping("/hop-dong-thue/confirm")
-    public ResponseEntity<HopDongThue> confirmHopDongThue(@RequestBody HopDongThue hopDongThue) {
+    @PutMapping("/hop-dong-thue/confirm/{hopDongId}")
+    public ResponseEntity<HopDongThue> confirmHopDongThue(@PathVariable int hopDongId) {
         try {
-            HopDongThue confirmedHopDong = rentingCarService.confirmHopDongThue(hopDongThue);
+            HopDongThue confirmedHopDong = rentingCarService.confirmHopDongThue(hopDongId);
             return ResponseEntity.ok(confirmedHopDong);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -149,13 +149,13 @@ public class RentingCarController {
     }
 
     @PostMapping("/tai-san-cam-co/nhan")
-    public ResponseEntity<String> nhanTaiSanCamCo(@RequestBody List<TaiSanCamCoRequestDTO> requestList) {
+    public ResponseEntity<List<TaiSanCamCo>> nhanTaiSanCamCo(@RequestBody List<TaiSanCamCoRequestDTO> requestList) {
         try {
-            rentingCarService.nhanTaiSanCamCo(requestList);
-            return ResponseEntity.ok("Tài sản cầm cố đã được nhận thành công");
+            List<TaiSanCamCo> taiSanCamCoList = rentingCarService.nhanTaiSanCamCo(requestList);
+            return ResponseEntity.status(HttpStatus.CREATED).body(taiSanCamCoList);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Lỗi khi nhận tài sản cầm cố: " + e.getMessage());
+                    .build();
         }
     }
 

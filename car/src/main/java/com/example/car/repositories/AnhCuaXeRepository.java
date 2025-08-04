@@ -10,5 +10,10 @@ import java.util.List;
 
 @Repository
 public interface AnhCuaXeRepository extends JpaRepository<AnhCuaXe, Integer> {
-    List<AnhCuaXe> findByOtoId(Integer otoId);
+
+
+    @Query("SELECT a.url FROM AnhCuaXe a WHERE a.oto.id = :otoId AND a.giayToXe = false ")
+    List<String> findByOtoIdAndGiayToXe(Integer otoId);
+
+//    List<AnhCuaXe> findByOtoId(Integer otoId);
 }

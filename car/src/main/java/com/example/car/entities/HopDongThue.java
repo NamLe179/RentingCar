@@ -27,6 +27,9 @@ public class HopDongThue {
     @Column(length = 1, nullable = false)
     private HopDongThueStatus trangThai;
 
+    @Column(length = 15, nullable = false)
+    private float gia;
+
     @Column(length = 200, nullable = true)
     private String moTa;
 
