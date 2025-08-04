@@ -1,5 +1,6 @@
 package com.example.car.entities;
 
+import com.example.car.enums.DanhSachDenStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class DanhSachDen {
     private String lyDo;
 
     @Column(length = 1, nullable = false)
-    private int trangThai;
+    private DanhSachDenStatus trangThai;
 
     @OneToOne
     @JoinColumn(name = "KhachHangId", nullable = false)

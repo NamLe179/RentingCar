@@ -1,5 +1,6 @@
 package com.example.car.entities;
 
+import com.example.car.enums.HopDongThueStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,10 @@ public class HopDongThue {
     private Date thoiGianTra;
 
     @Column(length = 1, nullable = false)
-    private int trangThai;
+    private HopDongThueStatus trangThai;
+
+    @Column(length = 15, nullable = false)
+    private float gia;
 
     @Column(length = 200, nullable = true)
     private String moTa;

@@ -1,5 +1,6 @@
 package com.example.car.entities;
 
+import com.example.car.enums.TaiSanCamCoStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +31,7 @@ public class TaiSanCamCo {
     private String moTa;
 
     @Column(length = 1, nullable = false)
-    private int trangThai;
+    private TaiSanCamCoStatus trangThai;
 
     @Column(nullable = true)
     private Date thoiGianTra;
@@ -51,6 +52,6 @@ public class TaiSanCamCo {
     private NhanVien nhanVienNhan;
 
     @ManyToOne
-    @JoinColumn(name = "nhan_vien_tra_id", nullable = false)
+    @JoinColumn(name = "nhan_vien_tra_id", nullable = true)
     private NhanVien nhanVienTra;
 }

@@ -14,7 +14,7 @@ public class TaiSanCamCoRequestDTO {
     private float giaTriTaiSan;
     private String moTa;
     private Date thoiGianNhan;
-    private KhachHang khachHang; // Khách hàng sở hữu tài sản
-    private HopDongThue hopDongThue; // Hợp đồng thuê liên quan đến tài sản này
-    private NhanVien nhanVienNhan; // Nhân viên nhận tài sản
+    private String khachHangId; // Khách hàng sở hữu tài sản
+    private int hopDongThueId; // Hợp đồng thuê liên quan đến tài sản này
+    private String nhanVienNhanId; // Nhân viên nhận tài sản
 }
