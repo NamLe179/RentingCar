@@ -140,6 +140,7 @@ create table hop_dong_thue (
     thoi_gian_nhan datetime not null,
     thoi_gian_tra datetime not null,
     trang_thai integer(1) not null,
+    gia float(15) not null,
     mo_ta varchar(200),
     check_in datetime,
     check_out datetime,
