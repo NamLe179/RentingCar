@@ -13,20 +13,21 @@ import java.util.List;
 public interface OtoRepository extends JpaRepository<Oto, String> {
     // Các phương thức truy vấn tùy chỉnh có thể được định nghĩa ở đây
     // Ví dụ: tìm kiếm xe theo tiêu chí
-    @Query("SELECT o FROM Oto o " +
-            "JOIN HopDongThue hdt ON o.id = hdt.oto.id " +
-            "JOIN MauXe mx ON o.mauXe.id = mx.id " +
-            "JOIN HangXe hx ON hx.id = mx.hangXe.id" +
-            "JOIN DiaChi dc ON dc.id = o.diaChi.id " +
+    @Query(value = "SELECT * FROM oto o " +
+            "JOIN hop_dong_thue hdt ON o.id = hdt.oto_id " +
+            "JOIN mau_xe mx ON o.mauxe_id = mx.id " +
+            "JOIN hang_xe hx ON hx.id = mx.hangxe_id " +
+            "JOIN dia_chi dc ON dc.id = o.diachi_id " +
             "WHERE " +
-            "(:brand IS NULL OR hx.brand = :brand) AND  " +
-            "(:ngayNhan >= (DATE_ADD(hdt.thoiGiantra, INTERVAL 7 DAY)) OR :ngayNhan >= hdt.checkout) AND " +
-            "(:ngayTra <= (DATE_ADD(hdt.thoiGianNhan, INTERVAL 7 DAY))) AND " +
+            "(:brand IS NULL OR hx.ten = :brand) AND " +
+            "(:ngayNhan >= DATE_ADD(hdt.thoi_gian_tra, INTERVAL 7 DAY) OR :ngayNhan >= hdt.checkout) AND " +
+            "(:ngayTra <= DATE_ADD(hdt.thoi_gian_nhan, INTERVAL 7 DAY)) AND " +
             "(:tinh = dc.tinh) AND " +
-            "(:fuelType IS NULL OR o.loaiNhienLieu = :fuelType) AND " +
-            "(:transmissionType IS NULL OR o.mucTieuThu = :transmissionType) AND " +
-            "(:seats IS NULL OR o.soGhe = :seats) AND " +
-            "o.trangThai = com.example.car.enums.OtoStatus.OK ")
+            "(:fuelType IS NULL OR o.loai_nhien_lieu = :fuelType) AND " +
+            "(:transmissionType IS NULL OR o.muc_tieu_thu = :transmissionType) AND " +
+            "(:seats IS NULL OR o.so_ghe = :seats) AND " +
+            "o.trang_thai = 'OK'",
+            nativeQuery = true)
      List<Oto> findByCriteria(@Param("ngayNhan") Date ngayNhan,
                               @Param("ngayTra") Date ngayTra,
                               @Param("tinh") String tinh,
