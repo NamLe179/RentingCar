@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class DiaChiDto {
-    private String id, tinh, quan, phuong, sonha;
+    private Integer id;
+    private String tinh, quan, phuong, soNha;
 }

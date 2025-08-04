@@ -14,7 +14,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(value = "/car")
+@RequestMapping(value = "/cars")
 public class OtoController {
 
     IOtoService otoService;
@@ -25,7 +25,9 @@ public class OtoController {
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors()
                         .stream()
-                        .map(FieldError::getDefaultMessage)
+                        .map((FieldError fieldError) -> {
+                            return fieldError.getField() + " " + fieldError.getDefaultMessage();
+                        })
                         .toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }

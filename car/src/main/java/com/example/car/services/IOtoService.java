@@ -6,5 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IOtoService {
-    public Oto createOto(OtoDto oToDto);
+    public Oto createOto(OtoDto oToDto) throws Exception;
+    public Oto getOtoById(Integer id) throws Exception;
 }

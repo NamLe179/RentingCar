@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PhuPhiDuocChonRepository extends JpaRepository<PhuPhiDuocChon, String> {
+public interface PhuPhiDuocChonRepository extends JpaRepository<PhuPhiDuocChon, Integer> {
 }

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class TienNghiDto {
 
     @NotNull
-    private String id;
+    private Integer id;
 
     @NotNull
     private String ten;

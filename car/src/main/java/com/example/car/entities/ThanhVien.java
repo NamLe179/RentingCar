@@ -2,12 +2,16 @@ package com.example.car.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "thanh_vien")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ThanhVien {
     @Id
     @Column(length = 10)
