@@ -1,17 +1,23 @@
 package com.example.car.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "anh_cua_xe")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnhCuaXe extends Anh{
-    @Column(length = 50, nullable = false)
-    private String loaiAnh;
+    public static final int MAXIMUM_IMAGES_PER_PRODUCT = 10;
 
-    @Column(nullable = false)
-    private boolean thumnail;
+    private Boolean giayToXe;
+
+    private Boolean thumnail;
 
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)

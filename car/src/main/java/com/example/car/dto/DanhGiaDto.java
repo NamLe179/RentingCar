@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class DanhGiaDto {
-    private Integer idKhachHang;
+    private String idKhachHang;
     private String binhLuan;
     private Float danhGia;
     private String tenKhachHang;

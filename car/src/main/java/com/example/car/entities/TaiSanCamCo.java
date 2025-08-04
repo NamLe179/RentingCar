@@ -1,13 +1,17 @@
 package com.example.car.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "tai_san_cam_co")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaiSanCamCo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
