@@ -16,4 +16,5 @@ public interface HopDongThueRepository extends JpaRepository<HopDongThue, String
 
     @Query("SELECT h FROM HopDongThue h WHERE h.trangThai = com.example.car.enums.HopDongThueStatus.CHO_DUYET ")
     List<HopDongThue> findHopDongChoDuyet();
+
 }

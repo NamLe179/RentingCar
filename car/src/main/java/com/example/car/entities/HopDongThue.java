@@ -2,13 +2,17 @@ package com.example.car.entities;
 
 import com.example.car.enums.HopDongThueStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "hop_dong_thue")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class HopDongThue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +30,6 @@ public class HopDongThue {
     @Column(length = 200, nullable = true)
     private String moTa;
 
-    @Column(length = 15, nullable = false)
-    private float gia;
-
     @Column(name = "check_in", nullable = true)
     private Date checkin;
 
@@ -44,7 +45,6 @@ public class HopDongThue {
     @Column(length = 255, nullable = true)
     private String doiTacBaoCao;
 
-    @Column(nullable = true)
     private Date ngayDanhGia;
 
     @ManyToOne

@@ -11,4 +11,5 @@ import java.util.List;
 public interface TaiSanCamCoRepository extends JpaRepository<TaiSanCamCo, String> {
     @Query("SELECT t FROM TaiSanCamCo t WHERE t.trangThai = com.example.car.enums.TaiSanCamCoStatus.DA_NHAN ")
     List<TaiSanCamCo> findByTrangThai();
+
 }

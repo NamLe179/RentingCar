@@ -9,13 +9,14 @@ import com.example.car.entities.*;
 import com.example.car.enums.OtoStatus;
 import com.example.car.repositories.*;
 import com.example.car.services.IOtoService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@AllArgsConstructor
 @Service
 public class OtoService implements IOtoService {
 
@@ -31,7 +32,7 @@ public class OtoService implements IOtoService {
     */
     @Transactional
     @Override
-    public Oto createOto(OtoDto oToDto) {
+    public Oto createOto(OtoDto oToDto) throws Exception {
         DoiTac doiTac = doiTacRepository.findById(oToDto.getDoiTacDto().getId())
                 .orElseThrow(() -> new DataNotFoundException(
                     "Khong tim thay doi tac co id " + oToDto.getDoiTacDto().getId()
@@ -44,14 +45,13 @@ public class OtoService implements IOtoService {
                 .tinh(oToDto.getDiaChiDto().getTinh())
                 .quan(oToDto.getDiaChiDto().getQuan())
                 .phuong(oToDto.getDiaChiDto().getPhuong())
-                .soNha(oToDto.getDiaChiDto().getSonha())
+                .soNha(oToDto.getDiaChiDto().getSoNha())
                 .build();
         diaChi = diaChiRepository.save(diaChi);
         Oto oTo = Oto.builder()
                 .doiTac(doiTac)
                 .mauXe(mauXe)
                 .diaChi(diaChi)
-                .gia(oToDto.getGia())
                 .bienSo(oToDto.getBienSo())
                 .moTa(oToDto.getMoTa())
                 .loaiNhienLieu(oToDto.getLoaiNhienLieu())
@@ -72,5 +72,13 @@ public class OtoService implements IOtoService {
                 ).toList();
         tienNghiDuocChonRepository.saveAll(tienNghiDuocChonList);
         return finalOTo;
+    }
+
+    @Override
+    public Oto getOtoById(Integer id) throws Exception {
+        return otoRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(
+                        "Khong tim thay o to co id " + id
+                ));
     }
 }

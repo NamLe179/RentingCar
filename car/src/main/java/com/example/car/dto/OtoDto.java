@@ -1,5 +1,7 @@
 package com.example.car.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class OtoDto {
-    private String id;
+    private Integer id;
 
     @NotNull
     @Positive
@@ -35,22 +37,27 @@ public class OtoDto {
     @Size(max = 25)
     private String bienSo;
 
-    @NotNull
-    @Positive
     private Float gia;
     private String moTa;
 
     @NotNull
+    @JsonProperty("doiTac")
     private DoiTacDto doiTacDto;
 
     @NotNull
+    @JsonProperty("diaChi")
     private DiaChiDto diaChiDto;
     private Integer soGhe;
     private Integer soChuyen;
     private Float danhGia;
     private String thumnail;
+
+    @JsonProperty("tienNghi")
     private List<TienNghiDto> tienNghiDtoList;
     private List<DanhGiaDto> danhGiaDtoList;
+
+    @NotNull
+    @JsonProperty("mauXe")
     private MauXeDto mauXeDto;
     private List<AnhCuaXeDto> anhCuaXeDtoList;
 }
