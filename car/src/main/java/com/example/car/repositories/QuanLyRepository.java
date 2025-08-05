@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuanLyRepository extends JpaRepository<QuanLy, String> {
+    QuanLy findTopByIdStartingWithOrderByIdDesc(String prefix);
 }

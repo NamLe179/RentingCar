@@ -98,6 +98,7 @@ create table hop_dong_cho_thue (
     ngay_ket_thuc datetime not null,
     loai_hop_dong varchar(20) not null,
     ghi_chu nvarchar(200),
+    gia_thue float(15) not null,
     oto_id integer(10) not null,
     
     nhan_vien_id varchar(10) not null,
