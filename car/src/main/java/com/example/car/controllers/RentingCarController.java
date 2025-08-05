@@ -39,7 +39,7 @@ public class RentingCarController {
     }
 
     @GetMapping("/cars/{otoId}/tien-nghi")
-    public ResponseEntity<List<TienNghi>> getTienNghiTheoOto(@PathVariable String otoId) {
+    public ResponseEntity<List<TienNghi>> getTienNghiTheoOto(@PathVariable Integer otoId) {
         try {
             List<TienNghi> tienNghiList = rentingCarService.getTienNghiTheoOto(otoId);
             return ResponseEntity.ok(tienNghiList);

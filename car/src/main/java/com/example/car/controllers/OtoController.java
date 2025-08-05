@@ -1,6 +1,6 @@
 package com.example.car.controllers;
 
-import com.example.car.dto.OtoDto;
+import com.example.car.dto.OtoRequestDto;
 import com.example.car.entities.Oto;
 import com.example.car.services.IOtoService;
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ public class OtoController {
     IOtoService otoService;
 
     @PostMapping()
-    public ResponseEntity<?> createCar(@Valid @RequestBody OtoDto otoDto, BindingResult result) {
+    public ResponseEntity<?> createCar(@Valid @RequestBody OtoRequestDto otoRequestDto, BindingResult result) {
         try {
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors()
@@ -31,11 +31,51 @@ public class OtoController {
                         .toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            Oto newOto = otoService.createOto(otoDto);
+            Oto newOto = otoService.createOto(otoRequestDto);
             return ResponseEntity.ok(newOto);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCar(
+            @PathVariable("id") Integer id,
+            @RequestBody OtoRequestDto otoRequestDto,
+            BindingResult result
+    ) {
+        try {
+            if(result.hasErrors()) {
+                List<String> errorMessages = result.getFieldErrors()
+                        .stream()
+                        .map((FieldError fieldError) -> {
+                            return fieldError.getField() + " " + fieldError.getDefaultMessage();
+                        })
+                        .toList();
+                return ResponseEntity.badRequest().body(errorMessages);
+            }
+            Oto oto = otoService.updateOto(id, otoRequestDto);
+            return ResponseEntity.ok(oto);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOtoById(@PathVariable("id") Integer otoId) {
+        try {
+            Oto existingOto = otoService.getOtoById(otoId);
+            return ResponseEntity.ok(existingOto);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/doi-tac/{doiTacId}")
+    public ResponseEntity<?> getOtoByDoiTacId(
+            @PathVariable("doiTacId") String doiTacId
+    ) {
+        List<Oto> otoList = otoService.findByDoiTacId(doiTacId);
+        return ResponseEntity.ok(otoList);
+    }
 }

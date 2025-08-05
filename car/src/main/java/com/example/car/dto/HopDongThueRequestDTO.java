@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 public class HopDongThueRequestDTO {
-    private String otoId;
+    private Integer otoId;
     private String khachHangId;
     private Date thoiGianNhan;
     private Date thoiGianTra;

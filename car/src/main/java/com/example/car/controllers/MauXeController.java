@@ -1,6 +1,7 @@
 package com.example.car.controllers;
 
 import com.example.car.entities.MauXe;
+import com.example.car.responses.MauXeResponse;
 import com.example.car.services.IMauXeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,13 @@ public class MauXeController {
     private IMauXeService mauXeService;
 
     @GetMapping(value = "/hang-xe-{hangXeId}")
-    public ResponseEntity<List<MauXe>> getAllMauXeBelongToHangXe(
+    public ResponseEntity<List<MauXeResponse>> getAllMauXeBelongToHangXe(
             @PathVariable("hangXeId") Integer hangXeId
     ) {
         List<MauXe> mauXeList = mauXeService.getAllMauXeBelongToHangXe(hangXeId);
-        return ResponseEntity.ok(mauXeList);
+        List<MauXeResponse> mauXeResponseList = mauXeList.stream()
+                .map(MauXeResponse::fromMauXe)
+                .toList();
+        return ResponseEntity.ok(mauXeResponseList);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.car.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -14,9 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OtoDto {
-    private Integer id;
-
+public class OtoRequestDto {
     @NotNull
     @Positive
     private Integer namSanXuat;
@@ -41,23 +38,17 @@ public class OtoDto {
     private String moTa;
 
     @NotNull
-    @JsonProperty("doiTac")
-    private DoiTacDto doiTacDto;
+    @JsonProperty("doiTacId")
+    private String doiTacId;
 
     @NotNull
     @JsonProperty("diaChi")
-    private DiaChiDto diaChiDto;
-    private Integer soGhe;
-    private Integer soChuyen;
-    private Float danhGia;
-    private String thumnail;
+    private DiaChiRequestDto diaChi;
 
     @JsonProperty("tienNghi")
-    private List<TienNghiDto> tienNghiDtoList;
-    private List<DanhGiaDto> danhGiaDtoList;
+    private List<Integer> tienNghiList;
 
     @NotNull
-    @JsonProperty("mauXe")
-    private MauXeDto mauXeDto;
-    private List<AnhCuaXeDto> anhCuaXeDtoList;
+    @JsonProperty("mauXeId")
+    private Integer mauXeId;
 }

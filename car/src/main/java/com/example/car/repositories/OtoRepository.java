@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface OtoRepository extends JpaRepository<Oto, String> {
+public interface OtoRepository extends JpaRepository<Oto, Integer> {
     // Các phương thức truy vấn tùy chỉnh có thể được định nghĩa ở đây
     // Ví dụ: tìm kiếm xe theo tiêu chí
     @Query(value = "SELECT o.* FROM oto o " +
@@ -35,4 +35,6 @@ public interface OtoRepository extends JpaRepository<Oto, String> {
                               @Param("fuelType") String fuelType,
                               @Param("transmissionType") String transmissionType,
                               @Param("seats") Integer seats);
+
+    List<Oto> findByDoiTacId(String doiTacId);
 }

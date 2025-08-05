@@ -70,7 +70,7 @@ public class RentingCarService {
         // Gọi repository để tìm kiếm xe
 //        return otoRepository.findByCriteria(brand, fuelType, transmissionType, seats);
     }
-    public List<TienNghi> getTienNghiTheoOto(String otoId) {
+    public List<TienNghi> getTienNghiTheoOto(Integer otoId) {
         // Lấy danh sách tiện nghi theo Oto ID
         List<TienNghiDuocChon> tienNghiDuocChonList = tienNghiDuocChonRepository.findByOtoId(otoId);
         List<TienNghi> tienNghiList = new ArrayList<>();

@@ -1,9 +1,8 @@
 package com.example.car.controllers;
 
-import com.example.car.dto.AnhCuaXeDto;
+import com.example.car.dto.AnhCuaXeRequestDto;
 import com.example.car.entities.AnhCuaXe;
 import com.example.car.entities.Oto;
-import com.example.car.repositories.OtoRepository;
 import com.example.car.services.IAnhCuaXeService;
 import com.example.car.services.IOtoService;
 import jakarta.validation.Valid;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -34,19 +32,22 @@ public class AnhCuaXeController {
     private IOtoService otoService;
     private IAnhCuaXeService anhCuaXeService;
 
-    @PutMapping()
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateAnhCuaXe(
-            @Valid @RequestBody AnhCuaXeDto anhCuaXeDto,
+            @PathVariable("id") Integer id,
+            @Valid @RequestBody AnhCuaXeRequestDto anhCuaXeRequestDto,
             BindingResult result) {
         try {
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors()
                         .stream()
-                        .map(FieldError::getDefaultMessage)
+                        .map((FieldError fieldError) -> {
+                            return fieldError.getField() + " " + fieldError.getDefaultMessage();
+                        })
                         .toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            AnhCuaXe anhCuaXe = anhCuaXeService.updateAnhCuaXe(anhCuaXeDto);
+            AnhCuaXe anhCuaXe = anhCuaXeService.updateAnhCuaXe(id, anhCuaXeRequestDto);
             return ResponseEntity.ok(anhCuaXe);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -78,7 +79,7 @@ public class AnhCuaXeController {
             String filename = storeFile(file); // Thay thế hàm này với code của bạn để lưu file
             //lưu vào đối tượng product trong DB
             AnhCuaXe anhCuaXe = anhCuaXeService.createAnhCuaXe(existingOto.getId(),
-                    AnhCuaXeDto.builder()
+                    AnhCuaXeRequestDto.builder()
                             .url(filename)
                             .build()
             );

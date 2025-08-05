@@ -1,6 +1,7 @@
 package com.example.car.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +12,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class HangXeDto {
-    private Integer id;
+public class AnhCuaXeRequestDto {
 
     @NotBlank
-    @Size(max = 20)
-    private String ten;
-    private String moTa;
+    @Size(max = 200)
+    private String url;
+
+    @NotNull
+    private Boolean giayToXe;
+
+    @NotNull
+    private Boolean thumnail;
+    private String ghiChu;
 }

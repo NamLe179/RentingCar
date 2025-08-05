@@ -1,5 +1,6 @@
 package com.example.car.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MauXeDto {
+public class DiaChiRequestDto {
     private Integer id;
-    private String tenMauXe;
-    private Integer soGhe;
-    private HangXeDto hangXeDto;
+    @NotBlank
+    private String tinh, quan, phuong, soNha;
 }

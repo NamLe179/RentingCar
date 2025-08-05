@@ -1,10 +1,7 @@
 package com.example.car.services.impl;
 
 import com.example.car.customExceptions.DataNotFoundException;
-import com.example.car.dto.DoiTacDto;
-import com.example.car.dto.MauXeDto;
-import com.example.car.dto.OtoDto;
-import com.example.car.dto.TienNghiDto;
+import com.example.car.dto.OtoRequestDto;
 import com.example.car.entities.*;
 import com.example.car.enums.OtoStatus;
 import com.example.car.repositories.*;
@@ -14,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -32,40 +28,85 @@ public class OtoService implements IOtoService {
     */
     @Transactional
     @Override
-    public Oto createOto(OtoDto oToDto) throws Exception {
-        DoiTac doiTac = doiTacRepository.findById(oToDto.getDoiTacDto().getId())
+    public Oto createOto(OtoRequestDto otoRequestDto) throws Exception {
+        DoiTac doiTac = doiTacRepository.findById(otoRequestDto.getDoiTacId())
                 .orElseThrow(() -> new DataNotFoundException(
-                    "Khong tim thay doi tac co id " + oToDto.getDoiTacDto().getId()
+                    "Khong tim thay doi tac co id " + otoRequestDto.getDoiTacId()
                 ));
-        MauXe mauXe = mauXeRepository.findById(oToDto.getMauXeDto().getId())
+        MauXe mauXe = mauXeRepository.findById(otoRequestDto.getMauXeId())
                 .orElseThrow(() -> new DataNotFoundException(
-                        "Khong tim thay mau xe co id " + oToDto.getMauXeDto().getId()
+                        "Khong tim thay mau xe co id " + otoRequestDto.getMauXeId()
                 ));
         DiaChi diaChi = DiaChi.builder()
-                .tinh(oToDto.getDiaChiDto().getTinh())
-                .quan(oToDto.getDiaChiDto().getQuan())
-                .phuong(oToDto.getDiaChiDto().getPhuong())
-                .soNha(oToDto.getDiaChiDto().getSoNha())
+                .tinh(otoRequestDto.getDiaChi().getTinh())
+                .quan(otoRequestDto.getDiaChi().getQuan())
+                .phuong(otoRequestDto.getDiaChi().getPhuong())
+                .soNha(otoRequestDto.getDiaChi().getSoNha())
                 .build();
-        diaChi = diaChiRepository.save(diaChi);
+        DiaChi newDiaChi = diaChiRepository.save(diaChi);
         Oto oTo = Oto.builder()
                 .doiTac(doiTac)
                 .mauXe(mauXe)
-                .diaChi(diaChi)
-                .bienSo(oToDto.getBienSo())
-                .moTa(oToDto.getMoTa())
-                .loaiNhienLieu(oToDto.getLoaiNhienLieu())
-                .mucTieuThu(oToDto.getMucTieuThu())
-                .namSanXuat(oToDto.getNamSanXuat())
-                .truyenDong(oToDto.getTruyenDong())
+                .diaChi(newDiaChi)
+                .bienSo(otoRequestDto.getBienSo())
+                .moTa(otoRequestDto.getMoTa())
+                .loaiNhienLieu(otoRequestDto.getLoaiNhienLieu())
+                .mucTieuThu(otoRequestDto.getMucTieuThu())
+                .namSanXuat(otoRequestDto.getNamSanXuat())
+                .truyenDong(otoRequestDto.getTruyenDong())
                 .trangThai(OtoStatus.CHO_DUYET)
                 .build();
         Oto finalOTo = otoRepository.save(oTo);
-        List<TienNghiDuocChon> tienNghiDuocChonList = oToDto.getTienNghiDtoList().stream()
-                .map((TienNghiDto tienNghiDto) -> {
-                            TienNghi tienNghi = tienNghiRepository.findById(tienNghiDto.getId())
+        List<TienNghiDuocChon> tienNghiDuocChonList = otoRequestDto.getTienNghiList().stream()
+                .map((Integer tienNghiId) -> {
+                            TienNghi tienNghi = tienNghiRepository.findById(tienNghiId)
                                     .orElseThrow(() -> new DataNotFoundException(
-                                            "Khong tim thay tien nghi co id " + tienNghiDto.getId()
+                                            "Khong tim thay tien nghi co id " + tienNghiId
+                                    ));
+                            return TienNghiDuocChon.builder().tienNghi(tienNghi).oto(finalOTo).build();
+                        }
+                ).toList();
+        tienNghiDuocChonRepository.saveAll(tienNghiDuocChonList);
+        return finalOTo;
+    }
+
+    @Override
+    @Transactional
+    public Oto updateOto(Integer id, OtoRequestDto otoRequestDto) throws Exception {
+        DoiTac doiTac = doiTacRepository.findById(otoRequestDto.getDoiTacId())
+                .orElseThrow(() -> new DataNotFoundException(
+                        "Khong tim thay doi tac co id " + otoRequestDto.getDoiTacId()
+                ));
+        MauXe mauXe = mauXeRepository.findById(otoRequestDto.getMauXeId())
+                .orElseThrow(() -> new DataNotFoundException(
+                        "Khong tim thay mau xe co id " + otoRequestDto.getMauXeId()
+                ));
+        DiaChi diaChi = diaChiRepository.findById(otoRequestDto.getDiaChi().getId()).orElse(null);
+        diaChi.setSoNha(otoRequestDto.getDiaChi().getSoNha());
+        diaChi.setPhuong(otoRequestDto.getDiaChi().getPhuong());
+        diaChi.setQuan(otoRequestDto.getDiaChi().getQuan());
+        diaChi.setTinh(otoRequestDto.getDiaChi().getTinh());
+        DiaChi updatingDiaChi = diaChiRepository.save(diaChi);
+        Oto oTo = Oto.builder()
+                .doiTac(doiTac)
+                .mauXe(mauXe)
+                .diaChi(updatingDiaChi)
+                .bienSo(otoRequestDto.getBienSo())
+                .moTa(otoRequestDto.getMoTa())
+                .loaiNhienLieu(otoRequestDto.getLoaiNhienLieu())
+                .mucTieuThu(otoRequestDto.getMucTieuThu())
+                .namSanXuat(otoRequestDto.getNamSanXuat())
+                .truyenDong(otoRequestDto.getTruyenDong())
+                .trangThai(OtoStatus.CHO_DUYET)
+                .build();
+        Oto finalOTo = otoRepository.save(oTo);
+        List<TienNghiDuocChon> oldTienNghiDuocChonList = tienNghiDuocChonRepository.findByOtoId(finalOTo.getId());
+        tienNghiDuocChonRepository.deleteAll(oldTienNghiDuocChonList);
+        List<TienNghiDuocChon> tienNghiDuocChonList = otoRequestDto.getTienNghiList().stream()
+                .map((Integer tienNghiId) -> {
+                            TienNghi tienNghi = tienNghiRepository.findById(tienNghiId)
+                                    .orElseThrow(() -> new DataNotFoundException(
+                                            "Khong tim thay tien nghi co id " + tienNghiId
                                     ));
                             return TienNghiDuocChon.builder().tienNghi(tienNghi).oto(finalOTo).build();
                         }
@@ -76,10 +117,16 @@ public class OtoService implements IOtoService {
 
     @Override
     public Oto getOtoById(Integer id) throws Exception {
-//        return otoRepository.findById(id)
-//                .orElseThrow(() -> new DataNotFoundException(
-//                        "Khong tim thay o to co id " + id
-//                ));
-        return null;
+        return otoRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(
+                        "Khong tim thay o to co id " + id
+                ));
     }
+
+    @Override
+    public List<Oto> findByDoiTacId(String doiTacId) {
+        return otoRepository.findByDoiTacId(doiTacId);
+    }
+
+
 }
