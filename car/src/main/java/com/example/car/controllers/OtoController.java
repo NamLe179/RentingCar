@@ -54,6 +54,9 @@ public class OtoController {
                         .toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
+            if(null == otoRequestDto.getDiaChi().getId()) {
+                return ResponseEntity.badRequest().body("Thieu dia chi id");
+            }
             Oto oto = otoService.updateOto(id, otoRequestDto);
             return ResponseEntity.ok(oto);
         } catch (Exception e) {

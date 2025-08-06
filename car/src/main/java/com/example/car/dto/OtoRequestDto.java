@@ -1,5 +1,6 @@
 package com.example.car.dto;
 
+import com.example.car.enums.OtoStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,9 @@ public class OtoRequestDto {
     private String bienSo;
 
     private Float gia;
+
+    private OtoStatus trangThai;
+
     private String moTa;
 
     @NotNull
