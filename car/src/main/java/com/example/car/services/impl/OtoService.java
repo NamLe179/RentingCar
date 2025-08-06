@@ -135,5 +135,10 @@ public class OtoService implements IOtoService {
         return otoRepository.findByDoiTacId(doiTacId);
     }
 
+    @Override
+    public List<Oto> getOtoChoDuyet() {
+        return otoRepository.findAllByTrangThai(OtoStatus.CHO_DUYET);
+    }
+
 
 }

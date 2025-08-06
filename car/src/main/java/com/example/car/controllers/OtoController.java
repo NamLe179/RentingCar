@@ -19,6 +19,12 @@ public class OtoController {
 
     IOtoService otoService;
 
+    @GetMapping("/cho-duyet")
+    public ResponseEntity<List<Oto>> getOtoChoDuyet() {
+        List<Oto> otoChoDuyet = otoService.getOtoChoDuyet();
+        return ResponseEntity.ok(otoChoDuyet);
+    }
+
     @PostMapping()
     public ResponseEntity<?> createCar(@Valid @RequestBody OtoRequestDto otoRequestDto, BindingResult result) {
         try {

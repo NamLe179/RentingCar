@@ -12,4 +12,5 @@ public interface IOtoService {
     Oto updateOto(Integer id, OtoRequestDto otoRequestDto) throws Exception;
     public Oto getOtoById(Integer id) throws Exception;
     List<Oto> findByDoiTacId(String doiTacId);
+    List<Oto> getOtoChoDuyet();
 }

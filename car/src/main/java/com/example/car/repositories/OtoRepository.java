@@ -1,6 +1,7 @@
 package com.example.car.repositories;
 
 import com.example.car.entities.Oto;
+import com.example.car.enums.OtoStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -38,6 +39,6 @@ public interface OtoRepository extends JpaRepository<Oto, Integer> {
 
     List<Oto> findByDoiTacId(String doiTacId);
 
-    @Query("SELECT o FROM Oto o WHERE o.trangThai = com.example.car.enums.OtoStatus.OK ")
-    List<Oto> findAllByTrangThai();
+//    @Query("SELECT o FROM Oto o WHERE o.trangThai = com.example.car.enums.OtoStatus.OK ")
+    List<Oto> findAllByTrangThai(OtoStatus otoStatus);
 }

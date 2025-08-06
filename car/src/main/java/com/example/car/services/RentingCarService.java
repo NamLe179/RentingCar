@@ -50,7 +50,7 @@ public class RentingCarService {
 
     public List<Oto> getAllCars() {
         // Lấy danh sách tất cả xe
-        return otoRepository.findAllByTrangThai();
+        return otoRepository.findAllByTrangThai(OtoStatus.OK);
     }
 
     public List<Oto> searchCars(YeuCauXeRequestDTO request) {
