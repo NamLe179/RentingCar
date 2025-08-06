@@ -38,6 +38,16 @@ public class RentingCarController {
         }
     }
 
+    @GetMapping("get-all-cars")
+    public ResponseEntity<List<Oto>> getAllCars() {
+        try {
+            List<Oto> cars = rentingCarService.getAllCars();
+            return ResponseEntity.ok(cars);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @GetMapping("/cars/{otoId}/tien-nghi")
     public ResponseEntity<List<TienNghi>> getTienNghiTheoOto(@PathVariable Integer otoId) {
         try {

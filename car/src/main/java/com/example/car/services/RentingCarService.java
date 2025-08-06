@@ -48,6 +48,11 @@ public class RentingCarService {
         return hangXeRepository.findAll();
     }
 
+    public List<Oto> getAllCars() {
+        // Lấy danh sách tất cả xe
+        return otoRepository.findAllByTrangThai();
+    }
+
     public List<Oto> searchCars(YeuCauXeRequestDTO request) {
         // Tạo truy vấn tìm kiếm dựa trên yêu cầu
         if( request != null) {

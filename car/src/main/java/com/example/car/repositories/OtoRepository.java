@@ -37,4 +37,7 @@ public interface OtoRepository extends JpaRepository<Oto, Integer> {
                               @Param("seats") Integer seats);
 
     List<Oto> findByDoiTacId(String doiTacId);
+
+    @Query("SELECT o FROM Oto o WHERE o.trangThai = com.example.car.enums.OtoStatus.OK ")
+    List<Oto> findAllByTrangThai();
 }
