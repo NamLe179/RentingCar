@@ -58,7 +58,7 @@ public class AnhCuaXeController {
     @PostMapping(value = "/uploads/{otoId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadImages(
             @PathVariable("otoId") Integer otoId,
-            @ModelAttribute("file") MultipartFile file
+            @RequestParam("file") MultipartFile file
     ){
         try {
             Oto existingOto = otoService.getOtoById(otoId);
