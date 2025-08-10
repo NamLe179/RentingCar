@@ -37,6 +37,6 @@ public class HopDongChoThueRequestDTO {
     private Integer otoId;
 
     @NotNull
-    private String nhanVienId;
+    private String quanLyId;
 
 }

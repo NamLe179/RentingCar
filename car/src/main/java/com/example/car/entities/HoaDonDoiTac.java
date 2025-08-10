@@ -21,10 +21,16 @@ public class HoaDonDoiTac {
     private Integer id;
 
     @Column(nullable = false)
-    private float tongTien;
+    private Float tongTien;
 
     @Column(nullable = false)
     private Date ngayThanhToan;
+
+    @Column(nullable = false)
+    private Date ngayBatDau;
+
+    @Column(nullable = false)
+    private Date ngayKetThuc;
 
     @Column(length = 20, nullable = false)
     private String phuongThucThanhToan;

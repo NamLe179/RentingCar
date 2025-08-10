@@ -96,20 +96,21 @@ create table hop_dong_cho_thue (
 	id integer(10) primary key auto_increment,
     ngay_bat_dau datetime not null,
     ngay_ket_thuc datetime not null,
-    loai_hop_dong varchar(20) not null,
     ghi_chu nvarchar(200),
+    phan_tram_cua_doi_tac integer(2) not null,
     gia_thue float(15) not null,
     oto_id integer(10) not null,
-    
-    nhan_vien_id varchar(10) not null,
+    trang_thai integer(1) not null,
+    quan_ly_id varchar(10) not null,
     foreign key (oto_id) references oto(id),
-    
-    foreign key (nhan_vien_id) references nhan_vien(id)
+    foreign key (quan_ly_id) references quan_ly(id)
 );
 
 create table hoa_don_doi_tac (
 	id integer(10) primary key auto_increment,
     tong_tien float(15) not null,
+    ngay_bat_dau datetime not null,
+    ngay_ket_thuc datetime not null,
     ngay_thanh_toan datetime not null,
     phuong_thuc_thanh_toan nvarchar(20) not null,
     ghi_chu nvarchar(200),
@@ -148,7 +149,7 @@ create table hop_dong_thue (
     khach_hang_danh_gia_chu nvarchar(255),
     khach_hang_danh_gia_so integer(1),
     ngay_danh_gia datetime,
-    doi_tac_bao_cao nvarchar(255),
+    da_thanh_toan_cho_doi_tac boolean default false,
     oto_id integer(10) not null,
     khach_hang_id varchar(10) not null,
     foreign key (oto_id) references oto(id),
