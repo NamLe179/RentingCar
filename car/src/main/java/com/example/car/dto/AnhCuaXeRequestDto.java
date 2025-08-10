@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -14,9 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AnhCuaXeRequestDto {
 
-    @NotBlank
-    @Size(max = 200)
-    private String url;
+    private MultipartFile file;
 
     @NotNull
     private Boolean giayToXe;
