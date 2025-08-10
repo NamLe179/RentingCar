@@ -1,5 +1,6 @@
 package com.example.car.entities;
 
+import com.example.car.enums.HopDongChoThueStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,14 +30,16 @@ public class HopDongChoThue {
     @Column(length = 255, nullable = true)
     private String ghiChu;
 
-    @Column(length = 15, nullable = false)
-    private float giaThue;
+    @Column(length = 1, nullable = false)
+    private HopDongChoThueStatus trangThai;
+
+    private Integer phanTramCuaDoiTac;
 
     @ManyToOne
     @JoinColumn(name = "OtoId", nullable = false)
     private Oto oto;
 
     @ManyToOne
-    @JoinColumn(name = "NhanVienId", nullable = false)
-    private NhanVien nhanVien;
+    @JoinColumn(name = "quan_ly_id", nullable = false)
+    private QuanLy quanLy;
 }

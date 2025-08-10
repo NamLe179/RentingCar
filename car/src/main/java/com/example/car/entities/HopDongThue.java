@@ -45,8 +45,7 @@ public class HopDongThue {
     @Column(length = 1, nullable = true)
     private int khachHangDanhGiaSo;
 
-    @Column(length = 255, nullable = true)
-    private String doiTacBaoCao;
+    private Boolean daThanhToanChoDoiTac;
 
     private Date ngayDanhGia;
 
