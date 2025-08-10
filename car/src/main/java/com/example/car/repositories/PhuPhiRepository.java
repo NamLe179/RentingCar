@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PhuPhiRepository extends JpaRepository<PhuPhi, Integer> {
+    boolean findByTen(String ten);
 }

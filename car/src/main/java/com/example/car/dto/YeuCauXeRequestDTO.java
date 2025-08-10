@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Data
 public class YeuCauXeRequestDTO {
+    private String khachHangId;
     private Date pickupDateTime;
     private Date returnDateTime;
     private String tinh;

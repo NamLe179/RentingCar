@@ -14,4 +14,7 @@ public class HopDongThueRequestDTO {
     private Date thoiGianTra;
     private String moTa;
     private float giaThue;
+
+    private Date ngayBatDau;
+    private Date ngayKetThuc;
 }

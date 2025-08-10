@@ -29,4 +29,7 @@ public class HoaDonRequestDTO {
 
     @NotNull
     private String nhanVienId; // Nhân viên xử lý thanh toán
+
+    private Date ngayBatDau;
+    private Date ngayKetThuc;
 }

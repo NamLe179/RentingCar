@@ -8,4 +8,6 @@ import lombok.Data;
 public class PhuPhiDuocChonRequestDTO {
     private PhuPhi phuPhi;
     private HoaDon hoaDon;
+    private int soLuong;
+    private int soGio;
 }

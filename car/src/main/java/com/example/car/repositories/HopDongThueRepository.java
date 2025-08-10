@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -17,4 +18,9 @@ public interface HopDongThueRepository extends JpaRepository<HopDongThue, String
     @Query("SELECT h FROM HopDongThue h WHERE h.trangThai = com.example.car.enums.HopDongThueStatus.CHO_DUYET ")
     List<HopDongThue> findHopDongChoDuyet();
 
+    @Query("SELECT h FROM HopDongThue h WHERE " +
+            "h.trangThai = com.example.car.enums.HopDongThueStatus.CHO_DUYET " +
+            "AND h.thoiGianNhan >= :ngayBatDau" +
+            " AND h.thoiGianTra <= :ngayKetThuc ")
+    List<HopDongThue> findHopDongChoDuyetByThoiGian(@Param("ngayBatDau") Date ngayBatDau, @Param("ngayKetThuc") Date ngayKetThuc);
 }
