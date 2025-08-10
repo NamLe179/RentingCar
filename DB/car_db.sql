@@ -183,8 +183,14 @@ create table hoa_don (
 create table phu_phi_duoc_chon (
 	id varchar(10) primary key,
     gia float(15) not null,
+<<<<<<< Updated upstream
     phu_phi_id varchar(10) not null,
     hoa_don_id varchar(10) not null,
+=======
+    so_luong integer(2) not null,
+    phu_phi_id integer(10) not null,
+    hoa_don_id integer(10) not null,
+>>>>>>> Stashed changes
 	foreign key (phu_phi_id) references phu_phi(id),
     foreign key (hoa_don_id) references hoa_don(id)
 );
@@ -200,6 +206,7 @@ create table tai_san_cam_co (
     thoi_gian_nhan datetime,
     hop_dong_thue_id varchar(10) not null,
     khach_hang_id varchar(10) not null,
+<<<<<<< Updated upstream
     nhan_vien_nhan_id varchar(10) not null,
     nhan_vien_tra_id varchar(10) not null,
     
@@ -208,3 +215,11 @@ create table tai_san_cam_co (
     foreign key (nhan_vien_nhan_id) references nhan_vien(id),
     foreign key (nhan_vien_tra_id) references nhan_vien(id)
 );
+=======
+    doi_tac_id varchar(10) not null,
+    
+    foreign key (hop_dong_thue_id) references hop_dong_thue(id),
+    foreign key (khach_hang_id) references khach_hang(id),
+    foreign key (doi_tac_id) references doi_tac(id)
+);
+>>>>>>> Stashed changes

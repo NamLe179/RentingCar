@@ -14,6 +14,9 @@ public class PhuPhiDuocChon {
     @Column(length = 15, nullable = false)
     private float gia;
 
+    @Column(length = 2, nullable = false)
+    private int soLuong;
+
     @ManyToOne
     @JoinColumn(name = "PhuPhiId", nullable = false)
     private PhuPhi phuPhi;
