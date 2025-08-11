@@ -42,6 +42,16 @@ public class HopDongChoThueController {
         }
     }
 
+    @PutMapping("/huy-hop-dong/{id}")
+    public ResponseEntity<?> huyHopDong(@PathVariable("id") Integer hopDongChoThueId) {
+        try {
+            HopDongChoThue hopDongChoThue = hopDongChoThueService.getHopDongChoThueById(hopDongChoThueId);
+            return ResponseEntity.ok(hopDongChoThue);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getOtoById(@PathVariable("id") Integer hopDongChoThueId) {
         try {

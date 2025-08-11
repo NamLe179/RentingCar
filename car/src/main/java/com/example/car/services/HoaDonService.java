@@ -39,7 +39,7 @@ public class HoaDonService {
         // Tạo hóa đơn từ hợp đồng thuê xe
         HoaDon hoaDon = new HoaDon();
 //        hoaDon.setId(hopDongThue.getId());
-        hoaDon.setHopDongThue(hopDongThueRepository.findById(String.valueOf(requestDTO.getHopDongThueId()))
+        hoaDon.setHopDongThue(hopDongThueRepository.findById(requestDTO.getHopDongThueId())
                 .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại")));
         hoaDon.setNhanVien(nhanVienRepository.findById(String.valueOf(requestDTO.getNhanVienId()))
                 .orElseThrow(() -> new RuntimeException("Nhân viên không tồn tại")));
@@ -50,7 +50,7 @@ public class HoaDonService {
         return hoaDonRepository.save(hoaDon);
     }
 
-    public float calculateTongTienTheoHopDong(Integer hopDongThueId) {
+    public float calculateTongTienTheoHopDong(int hopDongThueId) {
         // Tính tổng tiền theo hợp đồng thuê xe
         List<HoaDon> dsHoaDon = hoaDonRepository.findByHopDongThueId(hopDongThueId);
         float total = 0;

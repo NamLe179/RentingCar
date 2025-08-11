@@ -10,10 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface HopDongThueRepository extends JpaRepository<HopDongThue, String> {
+public interface HopDongThueRepository extends JpaRepository<HopDongThue, Integer> {
 
     @Query("SELECT h FROM HopDongThue h WHERE h.oto.id = :otoId ")
-    List<HopDongThue> findByOtoId(@Param("otoId") String otoId);
+    List<HopDongThue> findByOtoId(@Param("otoId") int otoId);
 
     @Query("SELECT h FROM HopDongThue h WHERE h.trangThai = com.example.car.enums.HopDongThueStatus.CHO_DUYET ")
     List<HopDongThue> findHopDongChoDuyet();

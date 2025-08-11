@@ -27,6 +27,9 @@ public class HopDongChoThueRequestDTO {
     @NotNull
     private Date ngayKetThuc;
 
+    @NotNull
+    private Integer phanTramCuaDoiTac;
+
     private String ghiChu;
 
     @Positive

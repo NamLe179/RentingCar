@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -54,6 +55,7 @@ public class OtoService implements IOtoService {
                 .diaChi(newDiaChi)
                 .bienSo(otoRequestDto.getBienSo())
                 .moTa(otoRequestDto.getMoTa())
+                .ngayTao(new Date())
                 .loaiNhienLieu(otoRequestDto.getLoaiNhienLieu())
                 .mucTieuThu(otoRequestDto.getMucTieuThu())
                 .namSanXuat(otoRequestDto.getNamSanXuat())

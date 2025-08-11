@@ -16,5 +16,5 @@ public class TaiSanCamCoRequestDTO {
     private Date thoiGianNhan;
     private String khachHangId; // Khách hàng sở hữu tài sản
     private int hopDongThueId; // Hợp đồng thuê liên quan đến tài sản này
-    private String nhanVienId; // Nhân viên nhận tài sản
+    private String doiTacId; // Nhân viên nhận tài sản
 }

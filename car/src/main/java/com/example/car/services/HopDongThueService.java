@@ -53,7 +53,7 @@ public class HopDongThueService {
         // Cập nhật thời gian check-in
 //        Calendar calendar = Calendar.getInstance();
 //        Date currentDate = calendar.getTime();
-        HopDongThue hopDongThue = hopDongThueRepository.findById(String.valueOf(hopDongThueId))
+        HopDongThue hopDongThue = hopDongThueRepository.findById(hopDongThueId)
                 .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại"));
         hopDongThue.setCheckin(new Date());
 
@@ -64,21 +64,21 @@ public class HopDongThueService {
         // Cập nhật thời gian check-out
 //        Calendar calendar = Calendar.getInstance();
 //        Date currentDate = calendar.getTime();
-        HopDongThue hopDongThue = hopDongThueRepository.findById(String.valueOf(hopDongThueId))
+        HopDongThue hopDongThue = hopDongThueRepository.findById(hopDongThueId)
                 .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại"));
         hopDongThue.setCheckout(new Date());
         return hopDongThueRepository.save(hopDongThue);
     }
     public HopDongThue cancelHopDongThue(int hopDongThueId) {
         // Cập nhật trạng thái hợp đồng thuê xe thành đã hủy
-        HopDongThue hopDongThue = hopDongThueRepository.findById(String.valueOf(hopDongThueId))
+        HopDongThue hopDongThue = hopDongThueRepository.findById(hopDongThueId)
                 .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại"));
         hopDongThue.setTrangThai(HopDongThueStatus.HUY); // 2: Hủy
         return hopDongThueRepository.save(hopDongThue);
     }
     public HopDongThue confirmHopDongThue(int hopDongThueId) {
         // Cập nhật trạng thái hợp đồng thuê xe thành đã xác nhận
-        HopDongThue hopDongThue = hopDongThueRepository.findById(String.valueOf(hopDongThueId))
+        HopDongThue hopDongThue = hopDongThueRepository.findById(hopDongThueId)
                 .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại"));
         hopDongThue.setTrangThai(HopDongThueStatus.OK); // 1: Đã xác nhận
         return hopDongThueRepository.save(hopDongThue);

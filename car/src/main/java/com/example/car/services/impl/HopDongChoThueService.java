@@ -42,6 +42,8 @@ public class HopDongChoThueService implements IHopDongChoThueService {
                 .trangThai(HopDongChoThueStatus.OK)
                 .oto(existingOto)
                 .quanLy(existingQuanLy)
+                .ngayTao(new Date())
+                .phanTramCuaDoiTac(hopDongChoThueRequestDTO.getPhanTramCuaDoiTac())
                 .ghiChu(hopDongChoThueRequestDTO.getGhiChu())
                 .ngayKetThuc(hopDongChoThueRequestDTO.getNgayKetThuc())
                 .ngayBatDau(hopDongChoThueRequestDTO.getNgayBatDau())
@@ -56,5 +58,21 @@ public class HopDongChoThueService implements IHopDongChoThueService {
                 .orElseThrow(() -> new DataNotFoundException(
                         "Khong tim thay hop dong co id: " + id
                 ));
+    }
+
+    @Transactional
+    @Override
+    public HopDongChoThue huyHopDongChoThue(Integer hopDongChoThueId) throws Exception {
+        HopDongChoThue hopDongChoThue = hopDongChoThueRepository.findById(hopDongChoThueId)
+                .orElseThrow(() -> new DataNotFoundException(
+                        "Khong tim thay hop dong co id: " + hopDongChoThueId
+                ));
+
+        // cập nhật trạng thái của ô tô tương ứng với hợp đồng
+        hopDongChoThue.getOto().setTrangThai(OtoStatus.HET_HAN_HOP_DONG);
+        Oto oto = otoRepository.save(hopDongChoThue.getOto());
+        hopDongChoThue.setOto(oto);
+        hopDongChoThue.setTrangThai(HopDongChoThueStatus.HUY);
+        return hopDongChoThueRepository.save(hopDongChoThue);
     }
 }
