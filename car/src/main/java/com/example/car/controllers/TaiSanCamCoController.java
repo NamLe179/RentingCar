@@ -28,7 +28,7 @@ public class TaiSanCamCoController {
                     .build();
         }
     }
-    // tài sản cầm cố lấy từ khách hàng hay nhân viên nhận?
+
     @GetMapping("/{doiTacId}")
     public ResponseEntity<List<TaiSanCamCo>> getTaiSanCamCo(@PathVariable String doiTacId) {
         try {

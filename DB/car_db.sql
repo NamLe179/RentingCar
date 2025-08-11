@@ -84,6 +84,7 @@ create table oto (
     trang_thai integer(1) not null,
     gia float(15) not null,
     ngay_tao datetime not null,
+
     mo_ta nvarchar(500),
     mau_xe_id integer(10) not null,
     dia_chi_id integer(10) not null,
@@ -217,4 +218,6 @@ create table tai_san_cam_co (
     foreign key (hop_dong_thue_id) references hop_dong_thue(id),
     foreign key (khach_hang_id) references khach_hang(id),
     foreign key (doi_tac_id) references doi_tac(id)
+
 );
+

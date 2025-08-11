@@ -1,7 +1,6 @@
 package com.example.car.controllers;
 
 import com.example.car.dto.OtoRequestDto;
-import com.example.car.dto.SearchingOtoDto;
 import com.example.car.entities.Oto;
 import com.example.car.services.IOtoService;
 import jakarta.validation.Valid;
@@ -11,9 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
-import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -22,18 +19,10 @@ public class OtoController {
 
     IOtoService otoService;
 
-    @GetMapping("")
-    public ResponseEntity<?> getOto(
-            @RequestParam Map<String, Object> params
-    ) {
-        SearchingOtoDto searchingOtoDto = null;
-        try {
-            searchingOtoDto = SearchingOtoDto.toSearchingOtoDtO(params);
-        } catch (ParseException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        List<Oto> otoList = otoService.findBySearchingOtoDto(searchingOtoDto);
-        return ResponseEntity.ok(otoList);
+    @GetMapping("/cho-duyet")
+    public ResponseEntity<List<Oto>> getOtoChoDuyet() {
+        List<Oto> otoChoDuyet = otoService.getOtoChoDuyet();
+        return ResponseEntity.ok(otoChoDuyet);
     }
 
     @PostMapping()
@@ -93,17 +82,9 @@ public class OtoController {
 
     @GetMapping("/doi-tac/{doiTacId}")
     public ResponseEntity<?> getOtoByDoiTacId(
-            @PathVariable("doiTacId") String doiTacId,
-            @RequestParam Map<String, Object> params
-            ) {
-        params.put("doiTacId", doiTacId);
-        SearchingOtoDto searchingOtoDto = null;
-        try {
-            searchingOtoDto = SearchingOtoDto.toSearchingOtoDtO(params);
-        } catch (ParseException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        List<Oto> otoList = otoService.findBySearchingOtoDto(searchingOtoDto);
+            @PathVariable("doiTacId") String doiTacId
+    ) {
+        List<Oto> otoList = otoService.findByDoiTacId(doiTacId);
         return ResponseEntity.ok(otoList);
     }
 }
