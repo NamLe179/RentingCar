@@ -28,16 +28,16 @@ public class TaiSanCamCoController {
                     .build();
         }
     }
-
-    @GetMapping("/{doiTacId}")
-    public ResponseEntity<List<TaiSanCamCo>> getTaiSanCamCo(@PathVariable String doiTacId) {
-        try {
-            List<TaiSanCamCo> taiSanList = taiSanCamCoService.getTaiSanCamCo(doiTacId);
-            return ResponseEntity.ok(taiSanList);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+    // tài sản cầm cố lấy từ khách hàng hay nhân viên nhận?
+//    @GetMapping("/{doiTacId}")
+//    public ResponseEntity<List<TaiSanCamCo>> getTaiSanCamCo(@PathVariable String doiTacId) {
+//        try {
+//            List<TaiSanCamCo> taiSanList = taiSanCamCoService.getTaiSanCamCo(doiTacId);
+//            return ResponseEntity.ok(taiSanList);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
     @PutMapping("/tra")
     public ResponseEntity<TaiSanCamCo> traTaiSanCamCo(@RequestBody TaiSanCamCoCanTraRequestDTO requestDTO) {

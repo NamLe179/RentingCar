@@ -48,15 +48,11 @@ public class TaiSanCamCo {
     private KhachHang khachHang;
 
     @ManyToOne
-<<<<<<< Updated upstream
     @JoinColumn(name = "nhan_vien_nhan_id", nullable = false)
     private NhanVien nhanVienNhan;
 
     @ManyToOne
     @JoinColumn(name = "nhan_vien_tra_id", nullable = true)
     private NhanVien nhanVienTra;
-=======
-    @JoinColumn(name = "doi_tac_id", nullable = false)
-    private DoiTac doiTac;
->>>>>>> Stashed changes
+
 }

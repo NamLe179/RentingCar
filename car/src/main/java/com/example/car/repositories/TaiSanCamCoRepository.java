@@ -10,9 +10,9 @@ import java.util.List;
 
 @Repository
 public interface TaiSanCamCoRepository extends JpaRepository<TaiSanCamCo, String> {
-    @Query("SELECT t FROM TaiSanCamCo t WHERE " +
-            "t.trangThai = com.example.car.enums.TaiSanCamCoStatus.DA_NHAN " +
-            "AND t.doiTac.id = :doiTacId ")
-    List<TaiSanCamCo> findByDoiTacAndTrangThai(@Param("doiTacId") String doiTacId);
+//    @Query("SELECT t FROM TaiSanCamCo t WHERE " +
+//            "t.trangThai = com.example.car.enums.TaiSanCamCoStatus.DA_NHAN " +
+//            "AND t.doiTac.id = :doiTacId ")
+//    List<TaiSanCamCo> findByDoiTacAndTrangThai(@Param("doiTacId") String doiTacId);
 
 }

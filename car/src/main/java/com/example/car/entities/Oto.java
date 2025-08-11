@@ -1,12 +1,14 @@
 package com.example.car.entities;
 
 import com.example.car.enums.OtoStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,6 +36,9 @@ public class Oto {
 
     @Column(length = 10, nullable = false)
     private String bienSo;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date ngayTao;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(length = 1, nullable = false)

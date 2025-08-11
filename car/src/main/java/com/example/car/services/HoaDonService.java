@@ -50,7 +50,7 @@ public class HoaDonService {
         return hoaDonRepository.save(hoaDon);
     }
 
-    public float calculateTongTienTheoHopDong(String hopDongThueId) {
+    public float calculateTongTienTheoHopDong(Integer hopDongThueId) {
         // Tính tổng tiền theo hợp đồng thuê xe
         List<HoaDon> dsHoaDon = hoaDonRepository.findByHopDongThueId(hopDongThueId);
         float total = 0;

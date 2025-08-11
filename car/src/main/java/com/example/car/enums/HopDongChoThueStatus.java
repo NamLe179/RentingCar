@@ -2,5 +2,6 @@ package com.example.car.enums;
 
 public enum HopDongChoThueStatus {
     OK,
-    HUY
+    HUY,
+    HET_HAN_HOP_DONG
 }

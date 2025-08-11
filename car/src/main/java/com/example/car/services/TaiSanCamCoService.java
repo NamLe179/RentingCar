@@ -4,10 +4,7 @@ import com.example.car.dto.TaiSanCamCoCanTraRequestDTO;
 import com.example.car.dto.TaiSanCamCoRequestDTO;
 import com.example.car.entities.TaiSanCamCo;
 import com.example.car.enums.TaiSanCamCoStatus;
-import com.example.car.repositories.DoiTacRepository;
-import com.example.car.repositories.HopDongThueRepository;
-import com.example.car.repositories.KhachHangRepository;
-import com.example.car.repositories.TaiSanCamCoRepository;
+import com.example.car.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +21,7 @@ public class TaiSanCamCoService {
     @Autowired
     private HopDongThueRepository hopDongThueRepository;
     @Autowired
-    private DoiTacRepository doiTacRepository;
+    private NhanVienRepository nhanVienRepository;
 
 
     public List<TaiSanCamCo> nhanTaiSanCamCo(List<TaiSanCamCoRequestDTO> list) {
@@ -43,7 +40,7 @@ public class TaiSanCamCoService {
                     .orElseThrow(() -> new RuntimeException("Khách hàng không tồn tại")));
             taiSanCamCo.setHopDongThue(hopDongThueRepository.findById(String.valueOf(request.getHopDongThueId()))
                     .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại")));
-            taiSanCamCo.setDoiTac(doiTacRepository.findById(String.valueOf(request.getDoiTacId()))
+            taiSanCamCo.setNhanVienNhan(nhanVienRepository.findById(String.valueOf(request.getNhanVienId()))
                     .orElseThrow(() -> new RuntimeException("Nhân viên nhận tài sản không tồn tại")));
 
             // Lưu tài sản cầm cố
@@ -53,10 +50,10 @@ public class TaiSanCamCoService {
         return taiSanCamCoList;
     }
 
-    public List<TaiSanCamCo> getTaiSanCamCo(String doiTacId) {
-        // Lấy danh sách tài sản cầm cố theo hợp đồng thuê xe
-        return taiSanCamCoRepository.findByDoiTacAndTrangThai(doiTacId);
-    }
+//    public List<TaiSanCamCo> getTaiSanCamCo(String doiTacId) {
+//        // Lấy danh sách tài sản cầm cố theo hợp đồng thuê xe
+//        return taiSanCamCoRepository.findByDoiTacAndTrangThai(doiTacId);
+//    }
 
     public TaiSanCamCo traTaiSanCamCo(TaiSanCamCoCanTraRequestDTO requestDTO) {
         // Cập nhật trạng thái tài sản cầm cố thành đã trả
