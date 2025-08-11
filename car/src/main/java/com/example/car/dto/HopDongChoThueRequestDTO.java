@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -22,10 +23,10 @@ import java.util.Date;
 public class HopDongChoThueRequestDTO {
 
     @NotNull
-    private Date ngayBatDau;
+    private LocalDateTime ngayBatDau;
 
     @NotNull
-    private Date ngayKetThuc;
+    private LocalDateTime ngayKetThuc;
 
     @NotNull
     private Integer phanTramCuaDoiTac;

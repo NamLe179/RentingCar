@@ -3,6 +3,7 @@ package com.example.car.repositories;
 import com.example.car.entities.Oto;
 import com.example.car.enums.OtoStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface OtoRepository extends JpaRepository<Oto, Integer> {
+public interface OtoRepository extends JpaRepository<Oto, Integer>, JpaSpecificationExecutor<Oto> {
     // Các phương thức truy vấn tùy chỉnh có thể được định nghĩa ở đây
     // Ví dụ: tìm kiếm xe theo tiêu chí
     @Query(value = "SELECT o.* FROM oto o " +

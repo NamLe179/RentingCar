@@ -1,5 +1,6 @@
 package com.example.car.controllers;
 
+import com.example.car.dto.HoaDonDoiTacRequestDto;
 import com.example.car.dto.HoaDonRequestDTO;
 import com.example.car.entities.HoaDonDoiTac;
 import com.example.car.services.IHoaDonDoiTacService;
@@ -24,7 +25,7 @@ public class HoaDonDoiTacController {
 
     @PostMapping
     public ResponseEntity<?> createHoaDonDoiTac(
-            @Valid @RequestBody HoaDonRequestDTO hoaDonRequestDTO,
+            @Valid @RequestBody HoaDonDoiTacRequestDto hoaDonDoiTacRequestDto,
             BindingResult result
     ) {
         try {
@@ -37,7 +38,7 @@ public class HoaDonDoiTacController {
                         .toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            HoaDonDoiTac hoaDonDoiTac = hoaDonDoiTacService.createHoaDonDoiTac(hoaDonRequestDTO);
+            HoaDonDoiTac hoaDonDoiTac = hoaDonDoiTacService.createHoaDonDoiTac(hoaDonDoiTacRequestDto);
             return ResponseEntity.ok(hoaDonDoiTac);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

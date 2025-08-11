@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -23,13 +24,15 @@ public class HopDongChoThue {
     private Integer id;
 
     @Column(nullable = false)
-    private Date ngayBatDau;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime ngayBatDau;
 
     @Column(nullable = false)
-    private Date ngayKetThuc;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime ngayKetThuc;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date ngayTao;
+    private LocalDateTime ngayTao;
 
     @Column(length = 255, nullable = true)
     private String ghiChu;

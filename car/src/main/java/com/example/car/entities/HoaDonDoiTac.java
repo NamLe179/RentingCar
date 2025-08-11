@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -24,13 +25,13 @@ public class HoaDonDoiTac {
     private Float tongTien;
 
     @Column(nullable = false)
-    private Date ngayThanhToan;
+    private LocalDateTime ngayThanhToan;
 
     @Column(nullable = false)
-    private Date ngayBatDau;
+    private LocalDateTime ngayBatDau;
 
     @Column(nullable = false)
-    private Date ngayKetThuc;
+    private LocalDateTime ngayKetThuc;
 
     @Column(length = 20, nullable = false)
     private String phuongThucThanhToan;

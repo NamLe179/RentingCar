@@ -84,7 +84,6 @@ create table oto (
     trang_thai integer(1) not null,
     gia float(15) not null,
     ngay_tao datetime not null,
-
     mo_ta nvarchar(500),
     mau_xe_id integer(10) not null,
     dia_chi_id integer(10) not null,
@@ -100,7 +99,6 @@ create table hop_dong_cho_thue (
     ngay_ket_thuc datetime not null,
     ghi_chu nvarchar(200),
     phan_tram_cua_doi_tac integer(2) not null,
-    gia_thue float(15) not null,
     ngay_tao datetime not null,
     oto_id integer(10) not null,
     trang_thai integer(1) not null,
