@@ -51,3 +51,5 @@ public class TaiSanCamCo {
     @JoinColumn(name = "doi_tac_id", nullable = false)
     private DoiTac doiTac;
 }
+
+

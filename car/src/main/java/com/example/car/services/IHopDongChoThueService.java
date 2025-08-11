@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 public interface IHopDongChoThueService {
     HopDongChoThue createHopDongChoThue(HopDongChoThueRequestDTO hopDongChoThueRequestDTO) throws Exception;
     HopDongChoThue getHopDongChoThueById(Integer id) throws Exception;
+    HopDongChoThue huyHopDongChoThue(Integer hopDongChoThueId) throws Exception;
 }
