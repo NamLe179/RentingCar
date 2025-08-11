@@ -41,7 +41,7 @@ public class TaiSanCamCoService {
             taiSanCamCo.setThoiGianNhan(request.getThoiGianNhan());
             taiSanCamCo.setKhachHang(khachHangRepository.findById(String.valueOf(request.getKhachHangId()))
                     .orElseThrow(() -> new RuntimeException("Khách hàng không tồn tại")));
-            taiSanCamCo.setHopDongThue(hopDongThueRepository.findById(String.valueOf(request.getHopDongThueId()))
+            taiSanCamCo.setHopDongThue(hopDongThueRepository.findById(request.getHopDongThueId())
                     .orElseThrow(() -> new RuntimeException("Hợp đồng thuê xe không tồn tại")));
             taiSanCamCo.setDoiTac(doiTacRepository.findById(String.valueOf(request.getDoiTacId()))
                     .orElseThrow(() -> new RuntimeException("Nhân viên nhận tài sản không tồn tại")));

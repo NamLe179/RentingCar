@@ -76,7 +76,7 @@ public class RentingCarService {
         return anhCuaXeRepository.findByOtoIdAndGiayToXe(otoId);
     }
 
-    public List<DanhGiaResponseDTO> getDanhGiaTheoOto(String otoId) {
+    public List<DanhGiaResponseDTO> getDanhGiaTheoOto(int otoId) {
         // Lấy danh sách đánh giá của xe theo Oto ID
         List<HopDongThue> hopDongThueList = hopDongThueRepository.findByOtoId(otoId);
         List<DanhGiaResponseDTO> danhGiaList = new ArrayList<>();
