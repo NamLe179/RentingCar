@@ -1,6 +1,7 @@
 package com.example.car.services.impl;
 
 import com.example.car.customExceptions.DataNotFoundException;
+import com.example.car.dto.HoaDonDoiTacRequestDto;
 import com.example.car.dto.HoaDonRequestDTO;
 import com.example.car.entities.HoaDonDoiTac;
 import com.example.car.entities.HopDongChoThue;
@@ -12,6 +13,8 @@ import com.example.car.services.IHoaDonDoiTacService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class HoaDonDoiTacService implements IHoaDonDoiTacService {
@@ -21,20 +24,22 @@ public class HoaDonDoiTacService implements IHoaDonDoiTacService {
     private HoaDonDoiTacRepository hoaDonDoiTacRepository;
 
     @Override
-    public HoaDonDoiTac createHoaDonDoiTac(HoaDonRequestDTO hoaDonRequestDTO) throws Exception {
-        HopDongChoThue hopDongChoThue = hopDongChoThueRepository.findById(hoaDonRequestDTO.getHopDongThueId())
+    public HoaDonDoiTac createHoaDonDoiTac(HoaDonDoiTacRequestDto hoaDonDoiTacRequestDto) throws Exception {
+        HopDongChoThue hopDongChoThue = hopDongChoThueRepository.findById(hoaDonDoiTacRequestDto.getHopDongChoThueId())
                 .orElseThrow(() -> new DataNotFoundException(
-                        "Khong tim thay hop dong cho thue co id: " + hoaDonRequestDTO.getHopDongThueId()
+                        "Khong tim thay hop dong cho thue co id: " + hoaDonDoiTacRequestDto.getHopDongChoThueId()
                 ));
-        NhanVien nhanVien = nhanVienRepository.findById(hoaDonRequestDTO.getNhanVienId())
+        NhanVien nhanVien = nhanVienRepository.findById(hoaDonDoiTacRequestDto.getNhanVienId())
                 .orElseThrow(() -> new DataNotFoundException(
-                        "Khong tim thay nhan vien co id: " + hoaDonRequestDTO.getNhanVienId()
+                        "Khong tim thay nhan vien co id: " + hoaDonDoiTacRequestDto.getNhanVienId()
                 ));
         HoaDonDoiTac hoaDonDoiTac = HoaDonDoiTac.builder()
-                .tongTien(hoaDonRequestDTO.getTongTien())
-                .ghiChu(hoaDonRequestDTO.getGhiChu())
-                .ngayThanhToan(hoaDonRequestDTO.getNgayThanhToan())
-                .phuongThucThanhToan(hoaDonRequestDTO.getPhuongThucThanhToan())
+                .tongTien(hoaDonDoiTacRequestDto.getTongTien())
+                .ghiChu(hoaDonDoiTacRequestDto.getGhiChu())
+                .ngayThanhToan(LocalDateTime.now())
+                .ngayBatDau(hoaDonDoiTacRequestDto.getNgayBatDau())
+                .ngayKetThuc(hoaDonDoiTacRequestDto.getNgayKetThuc())
+                .phuongThucThanhToan(hoaDonDoiTacRequestDto.getPhuongThucThanhToan())
                 .hopDongChoThue(hopDongChoThue)
                 .nhanVien(nhanVien)
                 .build();

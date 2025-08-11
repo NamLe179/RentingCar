@@ -2,6 +2,7 @@ package com.example.car.services.impl;
 
 import com.example.car.customExceptions.DataNotFoundException;
 import com.example.car.dto.HopDongChoThueRequestDTO;
+import com.example.car.dto.SearchingHopDongChoThueDto;
 import com.example.car.entities.HopDongChoThue;
 import com.example.car.entities.NhanVien;
 import com.example.car.entities.Oto;
@@ -13,11 +14,15 @@ import com.example.car.repositories.NhanVienRepository;
 import com.example.car.repositories.OtoRepository;
 import com.example.car.repositories.QuanLyRepository;
 import com.example.car.services.IHopDongChoThueService;
+import com.example.car.specifications.HopDongChoThueSpecifications;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -42,7 +47,7 @@ public class HopDongChoThueService implements IHopDongChoThueService {
                 .trangThai(HopDongChoThueStatus.OK)
                 .oto(existingOto)
                 .quanLy(existingQuanLy)
-                .ngayTao(new Date())
+                .ngayTao(LocalDateTime.now())
                 .phanTramCuaDoiTac(hopDongChoThueRequestDTO.getPhanTramCuaDoiTac())
                 .ghiChu(hopDongChoThueRequestDTO.getGhiChu())
                 .ngayKetThuc(hopDongChoThueRequestDTO.getNgayKetThuc())
@@ -62,17 +67,38 @@ public class HopDongChoThueService implements IHopDongChoThueService {
 
     @Transactional
     @Override
-    public HopDongChoThue huyHopDongChoThue(Integer hopDongChoThueId) throws Exception {
+    public HopDongChoThue thanhLyHopDongChoThue(Integer hopDongChoThueId, HopDongChoThueStatus hopDongChoThueStatus) throws Exception {
         HopDongChoThue hopDongChoThue = hopDongChoThueRepository.findById(hopDongChoThueId)
                 .orElseThrow(() -> new DataNotFoundException(
                         "Khong tim thay hop dong co id: " + hopDongChoThueId
                 ));
-
         // cập nhật trạng thái của ô tô tương ứng với hợp đồng
         hopDongChoThue.getOto().setTrangThai(OtoStatus.HET_HAN_HOP_DONG);
         Oto oto = otoRepository.save(hopDongChoThue.getOto());
         hopDongChoThue.setOto(oto);
-        hopDongChoThue.setTrangThai(HopDongChoThueStatus.HUY);
+        hopDongChoThue.setTrangThai(hopDongChoThueStatus);
         return hopDongChoThueRepository.save(hopDongChoThue);
+    }
+
+    @Override
+    public List<HopDongChoThue> findBySearchingHopDongChoThueDto(SearchingHopDongChoThueDto searchingHopDongChoThueDto) throws Exception {
+
+        Specification<HopDongChoThue> result = null;
+        if(null != searchingHopDongChoThueDto.getSdtDoiTac() || null != searchingHopDongChoThueDto.getDoiTacId()) {
+            result = Specification.where(HopDongChoThueSpecifications.joinDoiTac());
+        }
+        else if(null != searchingHopDongChoThueDto.getBienSo()) {
+            result = Specification.where(HopDongChoThueSpecifications.joinOto());
+        }
+
+        result = Specification.where(result)
+                .and(HopDongChoThueSpecifications.belongDoiTac(searchingHopDongChoThueDto.getDoiTacId()))
+                .and(HopDongChoThueSpecifications.hasBienSo(searchingHopDongChoThueDto.getBienSo()))
+                .and(HopDongChoThueSpecifications.equalsHopDongChoThueStatus(searchingHopDongChoThueDto.getTrangThai()))
+                .and(HopDongChoThueSpecifications.equalsSdtDoiTac(searchingHopDongChoThueDto.getSdtDoiTac()))
+                .and(HopDongChoThueSpecifications.greaterThanOrEqualToDate(searchingHopDongChoThueDto.getNgayBatDau()))
+                .and(HopDongChoThueSpecifications.lessThanOrEqualToDate(searchingHopDongChoThueDto.getNgayKetThuc()));
+
+        return hopDongChoThueRepository.findAll(result);
     }
 }

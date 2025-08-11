@@ -1,6 +1,7 @@
 package com.example.car.services;
 
 import com.example.car.dto.OtoRequestDto;
+import com.example.car.dto.SearchingOtoDto;
 import com.example.car.entities.Oto;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,5 @@ public interface IOtoService {
     public Oto getOtoById(Integer id) throws Exception;
     List<Oto> findByDoiTacId(String doiTacId);
     List<Oto> getOtoChoDuyet();
+    List<Oto> findBySearchingOtoDto(SearchingOtoDto searchingOtoDto);
 }
