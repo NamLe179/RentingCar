@@ -152,7 +152,7 @@ public class OtoService implements IOtoService {
     public List<Oto> findBySearchingOtoDto(SearchingOtoDto searchingOtoDto) {
 
         Specification<Oto> result = null;
-        if (null != searchingOtoDto.getDoiTacId()) {
+        if (null != searchingOtoDto.getDoiTacId() || null != searchingOtoDto.getSdtDoiTac()) {
             result = Specification.where(OtoSpecifications.joinDoiTac());
         }
 
