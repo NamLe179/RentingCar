@@ -2,15 +2,11 @@ package com.example.car.services.impl;
 
 import com.example.car.customExceptions.DataNotFoundException;
 import com.example.car.dto.OtoRequestDto;
-import com.example.car.dto.SearchingOtoDto;
 import com.example.car.entities.*;
 import com.example.car.enums.OtoStatus;
 import com.example.car.repositories.*;
 import com.example.car.services.IOtoService;
-import com.example.car.specification.AlwaysTrueSpecification;
-import com.example.car.specification.OtoSpecifications;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -143,42 +139,6 @@ public class OtoService implements IOtoService {
     public List<Oto> getOtoChoDuyet() {
         return otoRepository.findAllByTrangThai(OtoStatus.CHO_DUYET);
     }
-
-
-    /*
-    Hàm tìm kiếm ô tô theo các thuộc tính bên trong class SearchingOtoDto
-     */
-    @Override
-    public List<Oto> findBySearchingOtoDto(SearchingOtoDto searchingOtoDto) {
-
-        Specification<Oto> result = null;
-        if (null != searchingOtoDto.getDoiTacId() || null != searchingOtoDto.getSdtDoiTac()) {
-            result = Specification.where(OtoSpecifications.joinDoiTac());
-        }
-
-        if (null != searchingOtoDto.getHangXeId()) {
-            result = Specification.where(result).and(OtoSpecifications.joinHangXe());
-        }
-        else if(null != searchingOtoDto.getMauXeId()) {
-            result = Specification.where(result).and(OtoSpecifications.joinMauXe());
-        }
-
-        result = Specification.where(result).and(new AlwaysTrueSpecification<>())
-                .and(OtoSpecifications.betweensDate(searchingOtoDto.getNgayBatDau(), searchingOtoDto.getNgayKetThuc()))
-                .and(OtoSpecifications.equalsSdtDoiTac(searchingOtoDto.getSdtDoiTac()))
-                .and(OtoSpecifications.hasBienSo(searchingOtoDto.getBienSo()))
-                .and(OtoSpecifications.equalsOtoStatus(searchingOtoDto.getTrangThai()))
-                .and(OtoSpecifications.belongDoiTac(searchingOtoDto.getDoiTacId()))
-                .and(OtoSpecifications.belongToMauXe(searchingOtoDto.getMauXeId()))
-                .and(OtoSpecifications.belongToHangXe(searchingOtoDto.getHangXeId()))
-                .and(OtoSpecifications.equalsMucTieuThu(searchingOtoDto.getMucTieuThu()))
-                .and(OtoSpecifications.equalsNamSanXuat(searchingOtoDto.getNamSanXuat()))
-                .and(OtoSpecifications.hasLoaiNhienLieu(searchingOtoDto.getLoaiNhienLieu()))
-                .and(OtoSpecifications.hasTruyenDong(searchingOtoDto.getTruyenDong()));
-
-        return otoRepository.findAll(result);
-    }
-
 
 
 }

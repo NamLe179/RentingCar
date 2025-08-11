@@ -19,5 +19,5 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
             "h.hopDongThue.khachHang.sdt = :sdt ")
     List<HoaDon> findByKhachHang(@Param("sdt") String sdt);
 
-    List<HoaDon> findByHopDongThueId(Integer hopDongThueId);
+    List<HoaDon> findByHopDongThueId(String hopDongThueId);
 }
