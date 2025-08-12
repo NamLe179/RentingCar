@@ -3,6 +3,7 @@ package com.example.car.controllers;
 import com.example.car.dto.OtoRequestDto;
 import com.example.car.dto.SearchingOtoDto;
 import com.example.car.entities.Oto;
+import com.example.car.enums.OtoStatus;
 import com.example.car.services.IOtoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,10 +23,11 @@ public class OtoController {
 
     IOtoService otoService;
 
-    @GetMapping("")
+    @GetMapping("/cho-duyet")
     public ResponseEntity<?> getOto(
             @RequestParam Map<String, Object> params
     ) {
+        params.put("trangThai", 0);
         try {
             SearchingOtoDto searchingOtoDto = SearchingOtoDto.toSearchingOtoDtO(params);
             List<Oto> otoList = otoService.findBySearchingOtoDto(searchingOtoDto);
