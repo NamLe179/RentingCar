@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -25,14 +23,14 @@ public class HopDongChoThue {
 
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime ngayBatDau;
+    private Date ngayBatDau;
 
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime ngayKetThuc;
+    private Date ngayKetThuc;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime ngayTao;
+    private Date ngayTao;
 
     @Column(length = 255, nullable = true)
     private String ghiChu;

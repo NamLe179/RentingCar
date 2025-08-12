@@ -3,10 +3,10 @@ package com.example.car.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 public class HoaDonDoiTacRequestDto {
@@ -16,7 +16,8 @@ public class HoaDonDoiTacRequestDto {
 
     @Positive
     private Float tongTien; // Tổng tiền thanh toán
-
+    @NotNull
+    private Date ngayThanhToan;
 
     @NotNull
     private String phuongThucThanhToan; // Tiền mặt, Chuyển khoản, Thẻ tín dụng
@@ -25,8 +26,8 @@ public class HoaDonDoiTacRequestDto {
     @NotNull
     private String nhanVienId; // Nhân viên xử lý thanh toán
     @NotNull
-    private LocalDateTime ngayBatDau;
+    private Date ngayBatDau;
     @NotNull
-    private LocalDateTime ngayKetThuc;
+    private Date ngayKetThuc;
 
 }

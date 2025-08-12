@@ -55,7 +55,7 @@ public class OtoService implements IOtoService {
                 .diaChi(newDiaChi)
                 .bienSo(otoRequestDto.getBienSo())
                 .moTa(otoRequestDto.getMoTa())
-                .ngayTao(LocalDateTime.now())
+                .ngayTao(new Date())
                 .loaiNhienLieu(otoRequestDto.getLoaiNhienLieu())
                 .mucTieuThu(otoRequestDto.getMucTieuThu())
                 .namSanXuat(otoRequestDto.getNamSanXuat())
