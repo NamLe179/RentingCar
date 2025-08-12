@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.JoinType;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class HopDongChoThueSpecifications {
 
@@ -51,13 +52,13 @@ public class HopDongChoThueSpecifications {
         };
     }
 
-    public static Specification<HopDongChoThue> greaterThanOrEqualToDate(LocalDateTime ngayBatDau) {
+    public static Specification<HopDongChoThue> greaterThanOrEqualToDate(Date ngayBatDau) {
         return (root, query, criteriaBuilder) -> {
             return (null != ngayBatDau) ? criteriaBuilder.greaterThanOrEqualTo(root.get("ngayTao"), ngayBatDau): null;
         };
     }
 
-    public static Specification<HopDongChoThue> lessThanOrEqualToDate(LocalDateTime ngayKetThuc) {
+    public static Specification<HopDongChoThue> lessThanOrEqualToDate(Date ngayKetThuc) {
         return (root, query, criteriaBuilder) -> {
             return (null != ngayKetThuc) ? criteriaBuilder.lessThanOrEqualTo(root.get("ngayTao"), ngayKetThuc): null;
         };

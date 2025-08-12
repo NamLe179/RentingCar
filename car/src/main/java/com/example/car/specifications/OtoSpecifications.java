@@ -9,7 +9,7 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class OtoSpecifications {
 
@@ -59,13 +59,13 @@ public class OtoSpecifications {
         };
     }
 
-    public static Specification<Oto> greaterThanOrEqualToDate(LocalDateTime ngayBatDau) {
+    public static Specification<Oto> greaterThanOrEqualToDate(Date ngayBatDau) {
         return (root, query, criteriaBuilder) -> {
             return (null != ngayBatDau) ? criteriaBuilder.greaterThanOrEqualTo(root.get("ngayTao"), ngayBatDau): null;
         };
     }
 
-    public static Specification<Oto> lessThanOrEqualToDate(LocalDateTime ngayKetThuc) {
+    public static Specification<Oto> lessThanOrEqualToDate(Date ngayKetThuc) {
         return (root, query, criteriaBuilder) -> {
             return (null != ngayKetThuc) ? criteriaBuilder.lessThanOrEqualTo(root.get("ngayTao"), ngayKetThuc): null;
         };

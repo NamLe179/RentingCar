@@ -13,7 +13,6 @@ import com.example.car.services.IHoaDonDoiTacService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +35,7 @@ public class HoaDonDoiTacService implements IHoaDonDoiTacService {
         HoaDonDoiTac hoaDonDoiTac = HoaDonDoiTac.builder()
                 .tongTien(hoaDonDoiTacRequestDto.getTongTien())
                 .ghiChu(hoaDonDoiTacRequestDto.getGhiChu())
-                .ngayThanhToan(LocalDateTime.now())
+                .ngayThanhToan(hoaDonDoiTacRequestDto.getNgayThanhToan())
                 .ngayBatDau(hoaDonDoiTacRequestDto.getNgayBatDau())
                 .ngayKetThuc(hoaDonDoiTacRequestDto.getNgayKetThuc())
                 .phuongThucThanhToan(hoaDonDoiTacRequestDto.getPhuongThucThanhToan())

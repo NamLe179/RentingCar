@@ -20,7 +20,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class HopDongChoThueService implements IHopDongChoThueService {
                 .trangThai(HopDongChoThueStatus.OK)
                 .oto(existingOto)
                 .quanLy(existingQuanLy)
-                .ngayTao(LocalDateTime.now())
+                .ngayTao(hopDongChoThueRequestDTO.getNgayThanhToan())
                 .phanTramCuaDoiTac(hopDongChoThueRequestDTO.getPhanTramCuaDoiTac())
                 .ghiChu(hopDongChoThueRequestDTO.getGhiChu())
                 .ngayKetThuc(hopDongChoThueRequestDTO.getNgayKetThuc())

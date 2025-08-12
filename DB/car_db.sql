@@ -2,13 +2,13 @@ create database db_car;
 use db_car;
 create table hang_xe (
 	id integer(10) primary key auto_increment,
-    ten varchar(20) not null,
+    ten nvarchar(50) not null,
     mo_ta nvarchar(200)
 );
 
 create table mau_xe (
 	id integer(10) primary key auto_increment,
-    ten varchar(20) not null,
+    ten nvarchar(50) not null,
     so_ghe integer(2) not null,
     mo_ta nvarchar(200),
     hang_xe_id integer(10) not null,
@@ -17,7 +17,7 @@ create table mau_xe (
 
 create table tien_nghi (
 	id integer(10) primary key auto_increment,
-    ten varchar(20) not null,
+    ten nvarchar(50) not null,
     mo_ta nvarchar(200)
 );
 
@@ -30,7 +30,7 @@ create table anh (
 
 create table phu_phi (
 	id integer(10) primary key auto_increment,
-    ten varchar(20) not null,
+    ten nvarchar(50) not null,
     gia float(15) not null,
     mo_ta varchar(200)
 );
@@ -202,7 +202,7 @@ create table phu_phi_duoc_chon (
 
 create table tai_san_cam_co (
 	id integer(10) primary key auto_increment,
-    ten varchar(20) not null,
+    ten nvarchar(50) not null,
     loai_tai_san varchar(20) not null,
     gia float(15) not null,
     mo_ta nvarchar(200),
