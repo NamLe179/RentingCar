@@ -28,7 +28,7 @@ public class DanhSachDenController {
     }
 
     @GetMapping("/by-thoi-gian")
-    public ResponseEntity<List<DanhSachDen>> getDanhSachDenByThoiGian(DanhSachDenRequestDTO request) {
+    public ResponseEntity<List<DanhSachDen>> getDanhSachDenByThoiGian(@RequestBody DanhSachDenRequestDTO request) {
         try {
             List<DanhSachDen> danhSachDenList = danhSachDenService.getDanhSachDenByThoiGian(request);
             return ResponseEntity.ok(danhSachDenList);
@@ -38,7 +38,7 @@ public class DanhSachDenController {
     }
 
     @GetMapping("/by-trang-thai")
-    public ResponseEntity<List<DanhSachDen>> getDanhSachDenByTrangThai(DanhSachDenRequestDTO request) {
+    public ResponseEntity<List<DanhSachDen>> getDanhSachDenByTrangThai(@RequestBody DanhSachDenRequestDTO request) {
         try {
             List<DanhSachDen> danhSachDenList = danhSachDenService.getDanhSachDenByTrangThai(request);
             return ResponseEntity.ok(danhSachDenList);
@@ -48,7 +48,7 @@ public class DanhSachDenController {
     }
 
     @GetMapping("/both")
-    public ResponseEntity<List<DanhSachDen>> getDanhSachDenByThoiGianAndTrangThai(DanhSachDenRequestDTO request) {
+    public ResponseEntity<List<DanhSachDen>> getDanhSachDenByThoiGianAndTrangThai(@RequestBody DanhSachDenRequestDTO request) {
         try {
             List<DanhSachDen> danhSachDenList = danhSachDenService.getDanhSachDenByThoiGianAndTrangThai(request);
             return ResponseEntity.ok(danhSachDenList);

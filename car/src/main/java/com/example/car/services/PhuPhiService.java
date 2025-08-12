@@ -1,8 +1,10 @@
 package com.example.car.services;
 
 import com.example.car.dto.PhuPhiDuocChonRequestDTO;
+import com.example.car.entities.HoaDon;
 import com.example.car.entities.PhuPhi;
 import com.example.car.entities.PhuPhiDuocChon;
+import com.example.car.repositories.HoaDonRepository;
 import com.example.car.repositories.PhuPhiDuocChonRepository;
 import com.example.car.repositories.PhuPhiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class PhuPhiService {
     private PhuPhiRepository phuPhiRepository;
     @Autowired
     private PhuPhiDuocChonRepository phuPhiDuocChonRepository;
+    @Autowired
+    private HoaDonRepository hoaDonRepository;
 
     public List<PhuPhi> getDanhSachPhuPhi(){
         // Lấy danh sách phụ phí
@@ -28,24 +32,29 @@ public class PhuPhiService {
             // Tạo phụ phí được chọn từ yêu cầu
             PhuPhiDuocChon phuPhiDuocChon = new PhuPhiDuocChon();
 //            phuPhiDuocChon.setId(request.getId());
-            phuPhiDuocChon.setPhuPhi(request.getPhuPhi());
+            PhuPhi phuPhi = phuPhiRepository.findById(request.getPhuPhiId())
+                    .orElseThrow(() -> new RuntimeException("Phụ phí không tồn tại"));
+            phuPhiDuocChon.setPhuPhi(phuPhi);
 
-            if(request.getPhuPhi().getTen().equals("Phí quá giờ")) {
+            HoaDon hoaDon = hoaDonRepository.findById(request.getHoaDonId())
+                    .orElseThrow(() -> new RuntimeException("Hóa đơn không tồn tại"));
+
+            if(phuPhi.getTen().equals("Phí quá giờ")) {
                 // Chuyển đổi thời gian từ phút sang giờ
                 int soGio = request.getSoGio();
                 int soNgay = chuyenDoiThoiGian(soGio);
                 if(soNgay < 1) {
-                    phuPhiDuocChon.setGia(request.getPhuPhi().getGia() * soGio);
+                    phuPhiDuocChon.setGia(phuPhi.getGia() * soGio);
                 }
                 else {
-                    phuPhiDuocChon.setGia(request.getHoaDon().getHopDongThue().getOto().getGia() * soNgay);
+                    phuPhiDuocChon.setGia(hoaDon.getHopDongThue().getOto().getGia() * soNgay);
                 }
             } else {
-                phuPhiDuocChon.setGia(request.getPhuPhi().getGia());
+                phuPhiDuocChon.setGia(phuPhi.getGia());
             }
             phuPhiDuocChon.setSoLuong(request.getSoLuong());
 
-            phuPhiDuocChon.setHoaDon(request.getHoaDon());
+            phuPhiDuocChon.setHoaDon(hoaDon);
 
             // Lưu phụ phí được chọn
             phuPhiDuocChonRepository.save(phuPhiDuocChon);

@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class PhuPhiDuocChonRequestDTO {
-    private PhuPhi phuPhi;
-    private HoaDon hoaDon;
+    private int phuPhiId;
+    private int hoaDonId;
     private int soLuong;
     private int soGio;
 }

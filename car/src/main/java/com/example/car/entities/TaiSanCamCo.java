@@ -1,6 +1,7 @@
 package com.example.car.entities;
 
 import com.example.car.enums.TaiSanCamCoStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,9 +35,11 @@ public class TaiSanCamCo {
     private TaiSanCamCoStatus trangThai;
 
     @Column(nullable = true)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date thoiGianTra;
 
     @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date thoiGianNhan;
 
     @ManyToOne
