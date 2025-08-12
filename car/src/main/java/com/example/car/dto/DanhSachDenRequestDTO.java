@@ -12,6 +12,7 @@ public class DanhSachDenRequestDTO {
     private String quanLyId;
     private int hopDongThueId;
     private Integer trangThai;
+
     private Date ngayBatDau;
     private Date ngayKetThuc;
 }

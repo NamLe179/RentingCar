@@ -45,6 +45,9 @@ public class HopDongThueService {
     }
 
     public List<HopDongThue> getHopDongThueChoDuyetByThoiGian(HopDongThueRequestDTO requestDTO) {
+
+        System.out.println("ngayBatDau: " + requestDTO.getNgayBatDau());
+        System.out.println("ngayKetThuc: " + requestDTO.getNgayKetThuc());
         // Lấy danh sách hợp đồng thuê xe đang chờ duyệt theo thời gian
         return hopDongThueRepository.findHopDongChoDuyetByThoiGian(requestDTO.getNgayBatDau(), requestDTO.getNgayKetThuc());
     }

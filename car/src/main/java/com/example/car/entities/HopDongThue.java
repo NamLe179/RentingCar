@@ -1,6 +1,7 @@
 package com.example.car.entities;
 
 import com.example.car.enums.HopDongThueStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,9 +20,11 @@ public class HopDongThue {
     private Integer id;
 
     @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date thoiGianNhan;
 
     @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date thoiGianTra;
 
     @Column(length = 1, nullable = false)
@@ -34,9 +37,11 @@ public class HopDongThue {
     private String moTa;
 
     @Column(name = "check_in", nullable = true)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date checkin;
 
     @Column(name = "check_out", nullable = true)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date checkout;
 
     @Column(length = 255, nullable = true)

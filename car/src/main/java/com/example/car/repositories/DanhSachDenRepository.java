@@ -1,6 +1,7 @@
 package com.example.car.repositories;
 
 import com.example.car.entities.DanhSachDen;
+import com.example.car.enums.DanhSachDenStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,12 +17,12 @@ public interface DanhSachDenRepository extends JpaRepository<DanhSachDen, Intege
     List<DanhSachDen> findByThoiGian(@Param("ngayBatDau") Date ngayBatDau,@Param("ngayKetThuc") Date ngayKetThuc);
 
     @Query("SELECT d FROM DanhSachDen d WHERE d.trangThai = :trangThai")
-    List<DanhSachDen> findByTrangThai(@Param("trangThai") Integer trangThai);
+    List<DanhSachDen> findByTrangThai(@Param("trangThai") DanhSachDenStatus trangThai);
 
     @Query("SELECT d FROM DanhSachDen d WHERE d.ngayThem BETWEEN :ngayBatDau AND :ngayKetThuc AND d.trangThai = :trangThai")
     List<DanhSachDen> findByThoiGianAndTrangThai(
             @Param("ngayBatDau") Date ngayBatDau,
             @Param("ngayKetThuc") Date ngayKetThuc,
-            @Param("trangThai") Integer trangThai
+            @Param("trangThai") DanhSachDenStatus trangThai
     );
 }

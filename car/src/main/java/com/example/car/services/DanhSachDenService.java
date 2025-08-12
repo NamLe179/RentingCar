@@ -30,14 +30,15 @@ public class DanhSachDenService {
     }
 
     public List<DanhSachDen> getDanhSachDenByTrangThai(DanhSachDenRequestDTO request) {
-        return danhSachDenRepository.findByTrangThai(request.getTrangThai());
+        return danhSachDenRepository.findByTrangThai(DanhSachDenStatus.values()[request.getTrangThai()]);
     }
 
     public List<DanhSachDen> getDanhSachDenByThoiGianAndTrangThai(DanhSachDenRequestDTO request) {
+
         return danhSachDenRepository.findByThoiGianAndTrangThai(
                 request.getNgayBatDau(),
                 request.getNgayKetThuc(),
-                request.getTrangThai()
+                DanhSachDenStatus.values()[request.getTrangThai()]
         );
     }
 

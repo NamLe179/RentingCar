@@ -38,7 +38,7 @@ public class HopDongThueController {
     }
 
     @GetMapping("/cho-duyet/thoi-gian")
-    public ResponseEntity<List<HopDongThue>> getHopDongThueChoDuyetByThoiGian(HopDongThueRequestDTO requestDTO) {
+    public ResponseEntity<List<HopDongThue>> getHopDongThueChoDuyetByThoiGian(@RequestBody HopDongThueRequestDTO requestDTO) {
         try {
             List<HopDongThue> hopDongList = hopDongThueService.getHopDongThueChoDuyetByThoiGian(requestDTO);
             return ResponseEntity.ok(hopDongList);
