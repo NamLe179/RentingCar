@@ -25,11 +25,10 @@ public class OtoController {
 
     @GetMapping("/cho-duyet")
     public ResponseEntity<?> getOto(
-            @RequestParam Map<String, Object> params
+            SearchingOtoDto searchingOtoDto
     ) {
-        params.put("trangThai", 0);
         try {
-            SearchingOtoDto searchingOtoDto = SearchingOtoDto.toSearchingOtoDtO(params);
+            searchingOtoDto.setTrangThai(OtoStatus.CHO_DUYET);
             List<Oto> otoList = otoService.findBySearchingOtoDto(searchingOtoDto);
             return ResponseEntity.ok(otoList);
         } catch (Exception e) {
@@ -96,11 +95,10 @@ public class OtoController {
     @GetMapping("/doi-tac/{doiTacId}")
     public ResponseEntity<?> getOtoByDoiTacId(
             @PathVariable("doiTacId") String doiTacId,
-            @RequestParam Map<String, Object> params
+            SearchingOtoDto searchingOtoDto
     ) {
-        params.put("doiTacId", doiTacId);
         try {
-            SearchingOtoDto searchingOtoDto = SearchingOtoDto.toSearchingOtoDtO(params);
+            searchingOtoDto.setDoiTacId(doiTacId);
             List<Oto> otoList = otoService.findBySearchingOtoDto(searchingOtoDto);
             return ResponseEntity.ok(otoList);
         } catch (Exception e) {

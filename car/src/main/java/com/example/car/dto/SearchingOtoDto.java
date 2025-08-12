@@ -1,7 +1,6 @@
 package com.example.car.dto;
 
 import com.example.car.enums.OtoStatus;
-import com.example.car.utils.MapUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,20 +40,5 @@ public class SearchingOtoDto {
     private Integer mauXeId;
 
     private Integer hangXeId;
-
-    public static SearchingOtoDto toSearchingOtoDtO(Map<String, Object> params) throws Exception {
-        return SearchingOtoDto.builder()
-                .doiTacId(MapUtil.getObject(params, "doiTacId", String.class))
-                .bienSo(MapUtil.getObject(params, "bienSo", String.class))
-                .trangThai(MapUtil.getObject(params, "trangThai", OtoStatus.class))
-                .ngayBatDau(MapUtil.getObject(params, "ngayBatDau", LocalDateTime.class))
-                .ngayKetThuc(MapUtil.getObject(params, "ngayKetThuc", LocalDateTime.class))
-                .namSanXuat(MapUtil.getObject(params, "namSanXuat", Integer.class))
-                .truyenDong(MapUtil.getObject(params, "truyenDong", String.class))
-                .loaiNhienLieu(MapUtil.getObject(params, "loaiNhienLieu", String.class))
-                .mauXeId(MapUtil.getObject(params, "mauXeId", Integer.class))
-                .hangXeId(MapUtil.getObject(params, "hangXeId", Integer.class))
-                .build();
-    }
 
 }

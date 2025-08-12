@@ -25,9 +25,8 @@ public class HopDongChoThueController {
     private IHopDongChoThueService hopDongChoThueService;
 
     @GetMapping
-    public ResponseEntity<?> getHopDongChoThue(@RequestParam Map<String, Object> params) {
+    public ResponseEntity<?> getHopDongChoThue(SearchingHopDongChoThueDto searchingHopDongChoThueDto) {
         try {
-            SearchingHopDongChoThueDto searchingHopDongChoThueDto = SearchingHopDongChoThueDto.toSearchingHopDongChoThueDto(params);
             List<HopDongChoThue> hopDongChoThueList = hopDongChoThueService.findBySearchingHopDongChoThueDto(searchingHopDongChoThueDto);
             return ResponseEntity.ok(hopDongChoThueList);
         } catch (Exception e) {
