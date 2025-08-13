@@ -35,11 +35,11 @@ public class TaiSanCamCo {
     private TaiSanCamCoStatus trangThai;
 
     @Column(nullable = true)
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date thoiGianTra;
 
     @Column(nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date thoiGianNhan;
 
     @ManyToOne

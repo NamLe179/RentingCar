@@ -8,6 +8,7 @@ import com.example.car.repositories.NhanVienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -58,6 +59,16 @@ public class HoaDonService {
             total += hoaDon.getTongTien();
         }
         return total;
+    }
+
+    public Float getTongTienByHDChoThueIdAndCheckoutBetween(
+            Integer hopDongChoThueId,
+            Date ngayBatDau,
+            Date ngayKetThuc
+    ) {
+        return hoaDonRepository.getTongTienByHDChoThueIdAndCheckoutBetween(
+                hopDongChoThueId, ngayBatDau, ngayKetThuc
+        );
     }
 
 }

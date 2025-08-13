@@ -46,7 +46,7 @@ public class HopDongChoThueService implements IHopDongChoThueService {
                 .trangThai(HopDongChoThueStatus.OK)
                 .oto(existingOto)
                 .quanLy(existingQuanLy)
-                .ngayTao(hopDongChoThueRequestDTO.getNgayThanhToan())
+                .ngayTao(new Date())
                 .phanTramCuaDoiTac(hopDongChoThueRequestDTO.getPhanTramCuaDoiTac())
                 .ghiChu(hopDongChoThueRequestDTO.getGhiChu())
                 .ngayKetThuc(hopDongChoThueRequestDTO.getNgayKetThuc())

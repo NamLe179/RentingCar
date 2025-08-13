@@ -6,7 +6,9 @@ import com.example.car.enums.HopDongThueStatus;
 import com.example.car.repositories.HopDongThueRepository;
 import com.example.car.repositories.KhachHangRepository;
 import com.example.car.repositories.OtoRepository;
+import com.example.car.responses.TongTienForHopDongThue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -87,4 +89,15 @@ public class HopDongThueService {
         return hopDongThueRepository.save(hopDongThue);
     }
 
+    public List<TongTienForHopDongThue> getHopDonThueChuaThanhToanChoDoiTac(
+            Integer hopDongChoThueId,
+            Date ngayBatDau,
+            Date ngayKetThuc
+    ) {
+        return hopDongThueRepository.getTongTienHoaDonAndHDThueByHDChoThueIdAndCheckOutBetween(
+                hopDongChoThueId,
+                ngayBatDau,
+                ngayKetThuc
+        );
+    }
 }

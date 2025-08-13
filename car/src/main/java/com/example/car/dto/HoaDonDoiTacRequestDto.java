@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,5 +30,8 @@ public class HoaDonDoiTacRequestDto {
     private Date ngayBatDau;
     @NotNull
     private Date ngayKetThuc;
+
+//    @NotNull
+//    private List<Integer> hopDongThueList;
 
 }
