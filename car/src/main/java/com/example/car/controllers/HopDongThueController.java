@@ -2,12 +2,15 @@ package com.example.car.controllers;
 
 import com.example.car.dto.HopDongThueRequestDTO;
 import com.example.car.entities.HopDongThue;
+import com.example.car.responses.TongTienForHopDongThue;
 import com.example.car.services.HopDongThueService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -84,6 +87,23 @@ public class HopDongThueController {
             return ResponseEntity.ok(confirmedHopDong);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/chua-thanh-toan-cho-dt")
+    public ResponseEntity<?> getHopDongThueChuaThanhToanChoDoiTac(
+            @RequestParam Integer hopDongChoThueId,
+            @RequestParam Date ngayBatDau,
+            @RequestParam Date ngayKetThuc
+            ) {
+        try {
+            List<TongTienForHopDongThue> hopDongThueList = hopDongThueService.getHopDonThueChuaThanhToanChoDoiTac(
+                    hopDongChoThueId, ngayBatDau, ngayKetThuc
+            );
+            return ResponseEntity.ok(hopDongThueList);
+        } catch (Exception e) {
+//            e.printStackTrace();;
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 }

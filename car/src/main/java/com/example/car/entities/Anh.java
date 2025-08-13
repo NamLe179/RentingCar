@@ -26,6 +26,6 @@ public class Anh {
     private String ghiChu;
 
     @Column
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayChup;
 }

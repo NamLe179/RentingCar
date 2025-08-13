@@ -1,5 +1,6 @@
 package com.example.car.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,12 +24,15 @@ public class HoaDonDoiTac {
     private Float tongTien;
 
     @Column(nullable = false)
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayThanhToan;
 
     @Column(nullable = false)
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayBatDau;
 
     @Column(nullable = false)
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayKetThuc;
 
     @Column(length = 20, nullable = false)

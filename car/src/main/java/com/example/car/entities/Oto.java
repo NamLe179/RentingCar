@@ -41,7 +41,7 @@ public class Oto {
     @Column(length = 1, nullable = false)
     private OtoStatus trangThai;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayTao;
 
     @Column(nullable = false)

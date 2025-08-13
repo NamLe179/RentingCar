@@ -23,7 +23,7 @@ public class HoaDon {
     private float tongTien;
 
     @Column(nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayThanhToan;
 
     @Column(length = 20, nullable = false)

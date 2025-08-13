@@ -22,14 +22,14 @@ public class HopDongChoThue {
     private Integer id;
 
     @Column(nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayBatDau;
 
     @Column(nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayKetThuc;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date ngayTao;
 
     @Column(length = 255, nullable = true)

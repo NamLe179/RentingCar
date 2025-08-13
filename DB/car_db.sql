@@ -114,7 +114,6 @@ create table hoa_don_doi_tac (
     ngay_ket_thuc datetime not null,
     ngay_thanh_toan datetime not null,
     phuong_thuc_thanh_toan nvarchar(20) not null,
-    phan_tram_cua_doi_tac integer(10) not null,
     ghi_chu nvarchar(200),
     nhan_vien_id varchar(10) not null,
     hop_dong_cho_thue_id integer(10) not null,
@@ -154,6 +153,8 @@ create table hop_dong_thue (
     da_thanh_toan_cho_doi_tac boolean default false,
     oto_id integer(10) not null,
     khach_hang_id varchar(10) not null,
+    hoa_don_doi_tac_id integer(10),
+    foreign key (hoa_don_doi_tac_id) references hoa_don_doi_tac(id),
     foreign key (oto_id) references oto(id),
     foreign key (khach_hang_id) references khach_hang(id)
 );

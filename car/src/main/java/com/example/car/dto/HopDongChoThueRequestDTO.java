@@ -2,6 +2,7 @@ package com.example.car.dto;
 
 import com.example.car.entities.NhanVien;
 import com.example.car.entities.Oto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -26,16 +27,14 @@ public class HopDongChoThueRequestDTO {
     @NotNull
     private Date ngayKetThuc;
 
-    @NotNull
-    private Date ngayThanhToan;
+//    @NotNull
+//    private Date ngayThanhToan;
 
     @NotNull
+    @Positive
     private Integer phanTramCuaDoiTac;
 
     private String ghiChu;
-
-    @Positive
-    private Float gia;
 
     @NotNull
     @Positive
