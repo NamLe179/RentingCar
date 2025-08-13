@@ -90,6 +90,11 @@ public class HopDongThueController {
         }
     }
 
+    /*
+        Lấy danh sách hợp đồng thuê và tổng tiền từng hợp đồng có ngày checkin
+        trong  hợp đồng cho thuê có id = hopDongThueId có hiệu lực và ngày checkout
+        nằm trong khoảng thời gian ngayBatDau và ngayKetThuc
+     */
     @GetMapping("/chua-thanh-toan-cho-dt")
     public ResponseEntity<?> getHopDongThueChuaThanhToanChoDoiTac(
             @RequestParam Integer hopDongChoThueId,
