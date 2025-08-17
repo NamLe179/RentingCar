@@ -33,8 +33,19 @@ public class AuthService {
 
     public ThanhVien register(UserRequestDTO userRequest) {
         String username = userRequest.getUsername();
+        String email = userRequest.getEmail();
+        String sdt = userRequest.getSdt();
+
         if (thanhVienRepository.findByUsername(username) != null) {
             return null; // Trả về null nếu đã tồn tại
+        }
+
+        if (thanhVienRepository.findByEmail(email) != null) {
+            return null; // Trả về null nếu email đã tồn tại
+        }
+
+        if (thanhVienRepository.findBySdt(sdt) != null) {
+            return null; // Trả về null nếu số điện thoại đã tồn tại
         }
 
         DiaChi diaChi = new DiaChi();

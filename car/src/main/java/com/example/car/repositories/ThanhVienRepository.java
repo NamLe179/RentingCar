@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ThanhVienRepository extends JpaRepository<ThanhVien, String> {
     ThanhVien findByUsername(String username);
+    ThanhVien findByEmail(String email);
+    ThanhVien findBySdt(String sdt);
 }
