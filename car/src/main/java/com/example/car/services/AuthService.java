@@ -2,9 +2,12 @@ package com.example.car.services;
 
 import com.example.car.dto.UserRequestDTO;
 import com.example.car.entities.*;
+import com.example.car.enums.DanhSachDenStatus;
 import com.example.car.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AuthService {
@@ -20,12 +23,30 @@ public class AuthService {
     private QuanLyRepository quanLyRepository;
     @Autowired
     private DiaChiRepository diaChiRepository;
+    @Autowired
+    private DanhSachDenRepository danhSachDenRepository;
 
     public ThanhVien login(UserRequestDTO userRequest) {
         String username = userRequest.getUsername();
         String password = userRequest.getPassword();
         ThanhVien thanhVien = thanhVienRepository.findByUsername(username);
         if (thanhVien != null && thanhVien.getPassword().equals(password)) {
+            // Check if the user is in blacklist (only for KhachHang)
+            if (thanhVien instanceof KhachHang) {
+                KhachHang khachHang = (KhachHang) thanhVien;
+
+                // Get blacklist entries for this customer
+                List<DanhSachDen> blacklistEntries = danhSachDenRepository.findByKhachHang(khachHang);
+
+                // Check if any entry has OK status
+                boolean isBlacklisted = blacklistEntries.stream()
+                        .anyMatch(entry -> entry.getTrangThai() == DanhSachDenStatus.OK);
+
+                if (isBlacklisted) {
+                    return null; // User is blacklisted, deny login
+                }
+            }
+
             return thanhVien;
         }
         return null; // Trả về null nếu không tìm thấy hoặc mật khẩu không khớp
