@@ -32,7 +32,7 @@ public class HopDongChoThueService implements IHopDongChoThueService {
     private HopDongChoThueRepository hopDongChoThueRepository;
 
     @Override
-    public List<HopDongChoThue> getAllHopDongChoThu() {
+    public List<HopDongChoThue> getAllHopDongChoThue() {
         return hopDongChoThueRepository.findAll();
     }
 
