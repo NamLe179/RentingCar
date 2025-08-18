@@ -32,6 +32,11 @@ public class HopDongChoThueService implements IHopDongChoThueService {
     private HopDongChoThueRepository hopDongChoThueRepository;
 
     @Override
+    public List<HopDongChoThue> getAllHopDongChoThu() {
+        return hopDongChoThueRepository.findAll();
+    }
+
+    @Override
     @Transactional
     public HopDongChoThue createHopDongChoThue(HopDongChoThueRequestDTO hopDongChoThueRequestDTO) throws Exception {
         Oto existingOto = otoRepository.findById(hopDongChoThueRequestDTO.getOtoId())

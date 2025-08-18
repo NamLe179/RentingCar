@@ -9,6 +9,7 @@ import com.example.car.enums.HopDongChoThueStatus;
 import com.example.car.services.IHopDongChoThueService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -23,6 +24,16 @@ import java.util.Map;
 public class HopDongChoThueController {
 
     private IHopDongChoThueService hopDongChoThueService;
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllHopDongChoThue() {
+        try {
+            List<HopDongChoThue> hopDongChoThueList = hopDongChoThueService.getAllHopDongChoThue();
+            return ResponseEntity.ok(hopDongChoThueList);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     @GetMapping
     public ResponseEntity<?> getHopDongChoThue(SearchingHopDongChoThueDto searchingHopDongChoThueDto) {

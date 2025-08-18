@@ -32,6 +32,11 @@ public class HoaDonDoiTacService implements IHoaDonDoiTacService {
     private HopDongThueRepository hopDongThueRepository;
 
     @Override
+    public List<HoaDonDoiTac> getAllHoaDonDoiTac() {
+        return hoaDonDoiTacRepository.findAll();
+    }
+
+    @Override
     public List<HoaDonDoiTac> findBySearchingHoaDonDoiTacDto(SearchingHoaDonDoiTacDto searchingHoaDonDoiTacDto) {
         Specification<HoaDonDoiTac> result = null;
         if(null != searchingHoaDonDoiTacDto.getDoiTacId()) {

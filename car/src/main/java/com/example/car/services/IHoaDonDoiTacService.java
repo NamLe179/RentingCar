@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public interface IHoaDonDoiTacService {
+    List<HoaDonDoiTac> getAllHoaDonDoiTac();
     List<HoaDonDoiTac> findBySearchingHoaDonDoiTacDto(SearchingHoaDonDoiTacDto searchingHoaDonDoiTacDto);
     HoaDonDoiTac createHoaDonDoiTac(HoaDonDoiTacRequestDto hoaDonDoiTacRequestDto) throws DataNotFoundException, InvalidParamException;
     HoaDonDoiTac updateHoaDonDoiTac(Integer hoaDonDoiTacId,
