@@ -1,5 +1,6 @@
 package com.example.car.controllers;
 
+import com.example.car.customExceptions.InvalidParamException;
 import com.example.car.dto.OtoRequestDto;
 import com.example.car.dto.SearchingOtoDto;
 import com.example.car.entities.Oto;
@@ -23,13 +24,24 @@ public class OtoController {
 
     IOtoService otoService;
 
-    @GetMapping("/cho-duyet")
+    @GetMapping("")
     public ResponseEntity<?> getOto(
             SearchingOtoDto searchingOtoDto
     ) {
         try {
             searchingOtoDto.setTrangThai(OtoStatus.CHO_DUYET);
             List<Oto> otoList = otoService.findBySearchingOtoDto(searchingOtoDto);
+            return ResponseEntity.ok(otoList);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
+
+    @GetMapping("/cho-duyet")
+    public ResponseEntity<?> getOtoChoDuyet() {
+        try {
+            List<Oto> otoList = otoService.getOtoChoDuyet();
             return ResponseEntity.ok(otoList);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -51,8 +63,10 @@ public class OtoController {
             }
             Oto newOto = otoService.createOto(otoRequestDto);
             return ResponseEntity.ok(newOto);
-        } catch (Exception e) {
+        } catch (InvalidParamException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 
