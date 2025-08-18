@@ -13,5 +13,7 @@ public interface TienNghiDuocChonRepository extends JpaRepository<TienNghiDuocCh
     @Query("SELECT t FROM TienNghiDuocChon t WHERE t.oto.id = :otoId ")
     List<TienNghiDuocChon> findByOtoId(@Param("otoId") Integer otoId);
 
+    @Query("DELETE tndc FROM TienNghiDuocChon tndc WHERE tndc.oto.id =: otoId")
+    void deleteByOtoId(@Param("otoId") Integer otoId);
 
 }

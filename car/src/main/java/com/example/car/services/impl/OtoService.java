@@ -105,8 +105,9 @@ public class OtoService implements IOtoService {
         diaChi.setPhuong(otoRequestDto.getDiaChi().getPhuong());
         diaChi.setSoNha(otoRequestDto.getDiaChi().getSoNha());
         DiaChi updateDiaChi = diaChiRepository.save(diaChi);
-        List<TienNghiDuocChon> oldTienNghiDuocChonList = tienNghiDuocChonRepository.findByOtoId(exsitingOto.getId());
-        tienNghiDuocChonRepository.deleteAll(oldTienNghiDuocChonList);
+//        List<TienNghiDuocChon> oldTienNghiDuocChonList = tienNghiDuocChonRepository.findByOtoId(exsitingOto.getId());
+//        tienNghiDuocChonRepository.deleteAll(oldTienNghiDuocChonList);
+        tienNghiDuocChonRepository.deleteByOtoId(exsitingOto.getId());
         List<TienNghiDuocChon> tienNghiDuocChonList = otoRequestDto.getTienNghiList().stream()
                 .map((Integer tienNghiId) -> {
                             TienNghi tienNghi = tienNghiRepository.findById(tienNghiId)
