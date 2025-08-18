@@ -29,11 +29,7 @@ public class HoaDonController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    /*
-        Lấy tổng tiền của các hợp đồng thuê có ngày checkin
-        trong  hợp đồng cho thuê có id = hopDongThueId có hiệu lực và ngày checkout
-        nằm trong khoảng thời gian ngayBatDau và ngayKetThuc
-     */
+
     @GetMapping("/tong-tien")
     public ResponseEntity<?> getTongTienByHopDongThueList(
             @RequestParam Integer hopDongChoThueId,

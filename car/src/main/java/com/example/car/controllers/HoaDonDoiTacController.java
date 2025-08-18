@@ -23,10 +23,6 @@ public class HoaDonDoiTacController {
 
     private IHoaDonDoiTacService hoaDonDoiTacService;
 
-    /*
-        lấy danh sách hóa đơn đối tác theo các tiêu chí:
-        ngayBatDau, ngayKetThuc, phuongThucThanhToan
-     */
     @GetMapping("")
     public ResponseEntity<?> getHoaDonByDoiTac(
             SearchingHoaDonDoiTacDto searchingHoaDonDoiTacDto) {
@@ -40,10 +36,6 @@ public class HoaDonDoiTacController {
 
     }
 
-    /*
-        lấy danh sách hóa đơn đối tác theo các tiêu chí:
-        ngayBatDau, ngayKetThuc, phuongThucThanhToan thuộc đối tác có id = doiTacId
-     */
     @GetMapping("/doi-tac/{doiTacId}")
     public ResponseEntity<?> getHoaDonByDoiTac(
             @Valid @PathVariable("doiTacId") String doiTacId,
@@ -59,10 +51,6 @@ public class HoaDonDoiTacController {
 
     }
 
-    /*
-        thêm mới hóa đơn đối tác sao cho tổng tiền của
-        hóa đơn đối tác = phần trăm đối tác * tổng tiền hóa đơn của các hợp đồng thuê
-     */
     @PostMapping
     public ResponseEntity<?> createHoaDonDoiTac(
             @Valid @RequestBody HoaDonDoiTacRequestDto hoaDonDoiTacRequestDto,
@@ -87,10 +75,6 @@ public class HoaDonDoiTacController {
         }
     }
 
-    /*
-        cập nhật hóa đơn đối tác sao cho tổng tiền của
-        hóa đơn đối tác = phần trăm đối tác * tổng tiền hóa đơn của các hợp đồng thuê
-     */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateHoaDonDoiTac(
             @Valid @PathVariable("id") Integer hoaDonDoiTacId,
@@ -116,9 +100,6 @@ public class HoaDonDoiTacController {
         }
     }
 
-    /*
-        xóa hóa đơn đối tác 
-     */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteHoaDonDoiTac(@Valid @PathVariable("id") Integer id) {
         try {
