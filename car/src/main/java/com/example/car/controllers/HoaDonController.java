@@ -31,7 +31,7 @@ public class HoaDonController {
     }
 
     @GetMapping("/tong-tien")
-    public ResponseEntity<?> getTongTienByHopDongThue(
+    public ResponseEntity<?> getTongTienByHopDongChoThue(
             @RequestParam Integer hopDongChoThueId,
             @RequestParam Date ngayBatDau,
             @RequestParam Date ngayKetThuc
