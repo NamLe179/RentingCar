@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,7 +14,8 @@ public interface TienNghiDuocChonRepository extends JpaRepository<TienNghiDuocCh
     @Query("SELECT t FROM TienNghiDuocChon t WHERE t.oto.id = :otoId ")
     List<TienNghiDuocChon> findByOtoId(@Param("otoId") Integer otoId);
 
-    @Query("DELETE tndc FROM TienNghiDuocChon tndc WHERE tndc.oto.id =: otoId")
+    @Transactional
+    @Query("DELETE FROM TienNghiDuocChon tndc WHERE tndc.oto.id = :otoId")
     void deleteByOtoId(@Param("otoId") Integer otoId);
 
 }
