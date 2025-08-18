@@ -42,4 +42,8 @@ public interface OtoRepository extends JpaRepository<Oto, Integer>, JpaSpecifica
 
 //    @Query("SELECT o FROM Oto o WHERE o.trangThai = com.example.car.enums.OtoStatus.OK ")
     List<Oto> findAllByTrangThai(OtoStatus otoStatus);
+
+//    @Query("")
+    boolean existsByBienSo(String bienSo);
+
 }

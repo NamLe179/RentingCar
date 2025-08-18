@@ -1,6 +1,7 @@
 package com.example.car.services.impl;
 
 import com.example.car.customExceptions.DataNotFoundException;
+import com.example.car.customExceptions.InvalidParamException;
 import com.example.car.dto.OtoRequestDto;
 import com.example.car.dto.SearchingOtoDto;
 import com.example.car.entities.*;
@@ -34,6 +35,9 @@ public class OtoService implements IOtoService {
     @Transactional
     @Override
     public Oto createOto(OtoRequestDto otoRequestDto) throws Exception {
+        if(otoRepository.existsByBienSo(otoRequestDto.getBienSo())) {
+            throw new InvalidParamException("Bien so o to da ton tai");
+        }
         DoiTac doiTac = doiTacRepository.findById(otoRequestDto.getDoiTacId())
                 .orElseThrow(() -> new DataNotFoundException(
                     "Khong tim thay doi tac co id " + otoRequestDto.getDoiTacId()
