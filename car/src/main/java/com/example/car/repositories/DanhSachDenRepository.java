@@ -1,6 +1,7 @@
 package com.example.car.repositories;
 
 import com.example.car.entities.DanhSachDen;
+import com.example.car.entities.KhachHang;
 import com.example.car.enums.DanhSachDenStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,6 @@ public interface DanhSachDenRepository extends JpaRepository<DanhSachDen, Intege
             @Param("ngayKetThuc") Date ngayKetThuc,
             @Param("trangThai") DanhSachDenStatus trangThai
     );
+
+    List<DanhSachDen> findByKhachHang(KhachHang khachHang);
 }
