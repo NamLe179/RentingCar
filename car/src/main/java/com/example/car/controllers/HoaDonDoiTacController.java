@@ -23,6 +23,16 @@ public class HoaDonDoiTacController {
 
     private IHoaDonDoiTacService hoaDonDoiTacService;
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllHoaDonDoiTac() {
+        try {
+            List<HoaDonDoiTac> hoaDonDoiTacList = hoaDonDoiTacService.getAllHoaDonDoiTac();
+            return ResponseEntity.ok(hoaDonDoiTacList);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
+
     @GetMapping("")
     public ResponseEntity<?> getHoaDonByDoiTac(
             SearchingHoaDonDoiTacDto searchingHoaDonDoiTacDto) {

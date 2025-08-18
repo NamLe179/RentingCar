@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public interface IHopDongChoThueService {
+    List<HopDongChoThue> getAllHopDongChoThu():
     HopDongChoThue createHopDongChoThue(HopDongChoThueRequestDTO hopDongChoThueRequestDTO) throws Exception;
     HopDongChoThue getHopDongChoThueById(Integer id) throws Exception;
     HopDongChoThue thanhLyHopDongChoThue(Integer hopDongChoThueId, HopDongChoThueStatus hopDongChoThueStatus) throws Exception;
